@@ -24,3 +24,7 @@ jar {
     from configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
     manifest robotManifest
 }
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '3.2.1'
+}
