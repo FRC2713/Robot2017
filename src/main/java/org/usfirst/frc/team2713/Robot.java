@@ -6,7 +6,8 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import org.usfirst.frc.team2713.commands.ExampleCommand;
+import org.usfirst.frc.team2713.commands.OIDrive;
+import org.usfirst.frc.team2713.subsystems.DriveSubsystem;
 
 public class Robot extends IterativeRobot {
     private static Robot robotInstance;
@@ -20,7 +21,8 @@ public class Robot extends IterativeRobot {
         robotInstance = this;
         oi = new OI();
 
-        chooser.addDefault("Default Auto", new ExampleCommand());
+        DriveSubsystem ds = new DriveSubsystem();
+        chooser.addDefault("Operator Drive Mode", new OIDrive(ds, ds.roboDrive));
         SmartDashboard.putData("Auto mode", chooser);
     }
 

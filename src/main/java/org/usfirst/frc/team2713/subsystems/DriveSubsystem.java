@@ -14,7 +14,7 @@ public class DriveSubsystem extends Subsystem {
 	private CANTalon bottomLeft;
 	private CANTalon bottomRight;
 	private Robot robot = Robot.getRobot();
-	private RobotDrive roboDrive;
+	public RobotDrive roboDrive;
 
 	// Tank Drive > Arcade Drive
 	public DriveSubsystem() {

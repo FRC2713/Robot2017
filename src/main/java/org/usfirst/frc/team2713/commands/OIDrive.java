@@ -12,7 +12,7 @@ public class OIDrive extends Command {
 	private RobotDrive roboDrive;
 	DriveSubsystem drive;
 	XBoxController xbox = Robot.getOI().getController();
-	private double scaler =1.0;
+	private double scaler = 1.0;
 	private double deadband = 0.1;
 	private double polarity = -1;
 	private boolean reversed = false;
