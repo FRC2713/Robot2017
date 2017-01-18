@@ -17,6 +17,9 @@ public class OIDrive extends Command {
 	private double polarity = -1;
 	private boolean reversed = false;
 
+	private boolean lastButtonState = false; // true = pressed, false = not pressed
+	private boolean isPressed = false;
+
 	public OIDrive(DriveSubsystem drive, RobotDrive roboDrive) {
 		this.drive = drive;
 		this.roboDrive = roboDrive;
@@ -45,7 +48,15 @@ public class OIDrive extends Command {
 	}
 
 	private void checkReverser(){
+		// WPILib wants you to use a command for button triggers, but nah 
 		if (Robot.getOI().getController().getButtonB()){
+			lastButtonState = isPressed;
+			isPressed = true;
+		} else if (!Robot.getOI().getController().getButtonB()){
+			lastButtonState = isPressed;
+			isPressed = false;
+		}
+		if (isPressed && !lastButtonState){
 			reversed = !reversed;
 		}
 	}
