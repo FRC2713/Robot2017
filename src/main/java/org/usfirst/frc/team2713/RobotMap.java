@@ -1,11 +1,11 @@
 package org.usfirst.frc.team2713;
 
-import org.usfirst.frc.team2713.subsystems.DriveSubsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 
 public class RobotMap {
 	// User Configurable Settings
 	public static final boolean DEBUG = false;
-	public static final DriveSubsystem.DriveModes DRIVE_MODE = DriveSubsystem.DriveModes.tank;
+	public static SendableChooser<Enum> OIDriveMode = new SendableChooser<>();
 
 	// Talon Ports
 	public static final int TOP_RIGHT = 1;

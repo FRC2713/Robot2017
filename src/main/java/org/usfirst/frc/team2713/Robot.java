@@ -4,26 +4,25 @@ import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
-import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import org.usfirst.frc.team2713.commands.OIDrive;
+import org.usfirst.frc.team2713.commands.AutonomousCommand;
 import org.usfirst.frc.team2713.subsystems.DriveSubsystem;
 
 public class Robot extends IterativeRobot {
     private static Robot robotInstance;
     private static OI oi;
 
-    Command autonomousCommand;
-    SendableChooser<Command> chooser = new SendableChooser<>();
+    private DriveSubsystem drive;
+
+    Command autonomousCommand = new AutonomousCommand();
 
     @Override
     public void robotInit() {
         robotInstance = this;
         oi = new OI();
 
-        DriveSubsystem ds = new DriveSubsystem();
-        chooser.addDefault("Operator Drive Mode", new OIDrive(ds, ds.roboDrive));
-        SmartDashboard.putData("Auto mode", chooser);
+        initSubsystems();
+        initDash();
     }
 
     @Override
@@ -34,7 +33,6 @@ public class Robot extends IterativeRobot {
 
     @Override
     public void autonomousInit() {
-        autonomousCommand = chooser.getSelected();
         if (autonomousCommand != null) autonomousCommand.start();
     }
 
@@ -46,6 +44,17 @@ public class Robot extends IterativeRobot {
     @Override
     public void teleopInit() {
         if (autonomousCommand != null) autonomousCommand.cancel();
+        drive.startTeleop();
+    }
+
+    private void initSubsystems() {
+        drive = new DriveSubsystem();
+    }
+
+    private void initDash() {
+        RobotMap.OIDriveMode.addDefault("Tank Drive", DriveSubsystem.DriveModes.tank);
+        RobotMap.OIDriveMode.addObject("Arcade Drive", DriveSubsystem.DriveModes.arcade);
+        SmartDashboard.putData("OI Mode", RobotMap.OIDriveMode);
     }
 
     @Override
