@@ -27,8 +27,7 @@ public class Robot extends IterativeRobot {
 
     @Override
     public void disabledInit() {
-        robotInstance = null;
-        oi = null;
+
     }
 
     @Override
