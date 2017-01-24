@@ -10,16 +10,35 @@ import org.usfirst.frc.team2713.commands.OIDrive;
 
 public class DriveSubsystem extends Subsystem {
 	private Robot robot = Robot.getRobot();
-	private CANTalon topLeft = new CANTalon(RobotMap.TOP_LEFT);
-	private CANTalon topRight = new CANTalon(RobotMap.TOP_RIGHT);
-	private CANTalon bottomLeft = new CANTalon(RobotMap.BOTTOM_LEFT);
-	private CANTalon bottomRight = new CANTalon(RobotMap.BOTTOM_RIGHT);
-	public RobotDrive roboDrive = new RobotDrive(topLeft, bottomLeft, topRight, bottomRight);
+	private CANTalon topLeft;
+	private CANTalon topRight;
+	private CANTalon bottomLeft;
+	private CANTalon bottomRight;
+	public RobotDrive roboDrive;
 
 	private boolean reversed = false;
 
 	private boolean lastButtonState = false; // true = pressed, false = not pressed
 	private boolean isPressed = false;
+
+	public DriveSubsystem() {
+		topLeft = new CANTalon(RobotMap.TOP_LEFT);
+		topRight = new CANTalon(RobotMap.TOP_RIGHT);
+		bottomLeft = new CANTalon(RobotMap.BOTTOM_LEFT);
+		bottomRight = new CANTalon(RobotMap.BOTTOM_RIGHT);
+
+		bottomLeft.changeControlMode(CANTalon.TalonControlMode.Follower);
+		bottomLeft.set(RobotMap.TOP_LEFT);
+
+		topRight.changeControlMode(CANTalon.TalonControlMode.Follower);
+		topRight.set(RobotMap.BOTTOM_RIGHT);
+
+		roboDrive = new RobotDrive(topLeft, bottomRight);
+
+		roboDrive.setInvertedMotor(RobotDrive.MotorType.kRearRight, true);
+		//roboDrive.setInvertedMotor(RobotDrive.MotorType.kFrontRight, true);
+
+	}
 
 	@Override
 	protected void initDefaultCommand() {
