@@ -58,10 +58,10 @@ public class DriveSubsystem extends Subsystem {
 
 	private void checkReverser(){
 		// WPILib wants you to use a command for button triggers, but nah
-		if (Robot.getOI().getController().getButtonB()){
+		if (Robot.getOI().getController().getBButton()){
 			lastButtonState = isPressed;
 			isPressed = true;
-		} else if (!Robot.getOI().getController().getButtonB()){
+		} else if (!Robot.getOI().getController().getBButton()){
 			lastButtonState = isPressed;
 			isPressed = false;
 		}

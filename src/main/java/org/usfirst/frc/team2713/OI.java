@@ -1,20 +1,20 @@
 package org.usfirst.frc.team2713;
 
 import edu.wpi.first.wpilibj.Joystick;
-import org.usfirst.frc.team2713.input.controller.XBoxController;
+import edu.wpi.first.wpilibj.XboxController;
 
 public class OI {
-	private XBoxController xBoxController;
+	private XboxController xBoxController;
 
 	public OI(){
 		initControllers();
 	}
 
-	public XBoxController getController() {
+	public XboxController getController() {
 		return xBoxController;
 	}
 
-	public XBoxController getController(ControllerType t) {
+	public XboxController getController(ControllerType t) {
 		switch (t) {
 			case xbox: return xBoxController;
 			default: return xBoxController;
@@ -26,11 +26,11 @@ public class OI {
 		for (int i = 0; i < 6; i++) {
 			Joystick test = new Joystick(i);
 			if (test.getName().equals(RobotMap.XBOX_NAME)) {
-				xBoxController = new XBoxController(i);
+				xBoxController = new XboxController(i);
 			}
 		}
 		if (xBoxController == null) {
-			xBoxController = new XBoxController(RobotMap.BACKUP_XBOX_PORT);
+			xBoxController = new XboxController(RobotMap.BACKUP_XBOX_PORT);
 		}
 	}
 
