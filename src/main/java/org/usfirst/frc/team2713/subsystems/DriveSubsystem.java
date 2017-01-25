@@ -30,14 +30,10 @@ public class DriveSubsystem extends Subsystem {
 		bottomLeft.changeControlMode(CANTalon.TalonControlMode.Follower);
 		bottomLeft.set(RobotMap.TOP_LEFT);
 
-		topRight.changeControlMode(CANTalon.TalonControlMode.Follower);
-		topRight.set(RobotMap.BOTTOM_RIGHT);
+		bottomRight.changeControlMode(CANTalon.TalonControlMode.Follower);
+		bottomRight.set(RobotMap.TOP_RIGHT);
 
-		roboDrive = new RobotDrive(topLeft, bottomRight);
-
-		roboDrive.setInvertedMotor(RobotDrive.MotorType.kRearRight, true);
-		//roboDrive.setInvertedMotor(RobotDrive.MotorType.kFrontRight, true);
-
+		roboDrive = new RobotDrive(topLeft, topRight);
 	}
 
 	@Override
