@@ -28,6 +28,8 @@ public class OIDrive extends Command {
 
 	@Override
 	protected void execute() {
+		if (RobotMap.DEBUG) System.out.printf("[DEBUG] EncPos: topLeft: %d & %d, topRight: %d & %d\n",
+				drive.topLeft.getEncPosition(), drive.topLeft.getEncVelocity(), drive.topRight.getEncPosition(), drive.topRight.getEncVelocity());
 		if (RobotMap.OIDriveMode.getSelected() == DriveSubsystem.DriveModes.tank){
 			drive.tankDrive(xbox.getY(Hand.kLeft)*scaler*polarity, xbox.getY(Hand.kRight)*scaler*polarity, deadband, true);
 		} else if (RobotMap.OIDriveMode.getSelected() == DriveSubsystem.DriveModes.arcade){

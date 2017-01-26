@@ -10,10 +10,10 @@ import org.usfirst.frc.team2713.commands.OIDrive;
 
 public class DriveSubsystem extends Subsystem {
 	private Robot robot = Robot.getRobot();
-	private CANTalon topLeft;
-	private CANTalon topRight;
-	private CANTalon bottomLeft;
-	private CANTalon bottomRight;
+	public CANTalon topLeft = new CANTalon(RobotMap.TOP_LEFT); // Has an e4p360250 encoder
+	public CANTalon topRight = new CANTalon(RobotMap.TOP_RIGHT); // And me!
+	private CANTalon bottomLeft = new CANTalon(RobotMap.BOTTOM_LEFT);
+	private CANTalon bottomRight = new CANTalon(RobotMap.BOTTOM_RIGHT);
 	public RobotDrive roboDrive;
 
 	private boolean reversed = false;
@@ -22,16 +22,14 @@ public class DriveSubsystem extends Subsystem {
 	private boolean isPressed = false;
 
 	public DriveSubsystem() {
-		topLeft = new CANTalon(RobotMap.TOP_LEFT);
-		topRight = new CANTalon(RobotMap.TOP_RIGHT);
-		bottomLeft = new CANTalon(RobotMap.BOTTOM_LEFT);
-		bottomRight = new CANTalon(RobotMap.BOTTOM_RIGHT);
-
 		bottomLeft.changeControlMode(CANTalon.TalonControlMode.Follower);
 		bottomLeft.set(RobotMap.TOP_LEFT);
 
 		bottomRight.changeControlMode(CANTalon.TalonControlMode.Follower);
 		bottomRight.set(RobotMap.TOP_RIGHT);
+
+		topLeft.configEncoderCodesPerRev(1440); // As per https://tinyurl.com/jt5u24u
+		topRight.configEncoderCodesPerRev(1440);
 
 		roboDrive = new RobotDrive(topLeft, topRight);
 	}
