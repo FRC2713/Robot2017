@@ -49,6 +49,13 @@ public class DriveSubsystem extends Subsystem {
 		roboDrive.tankDrive(getDeadband(left, deadband) * multiplier, getDeadband(right, deadband) * multiplier);
 	}
 
+	public void arcadeDrive(double speed, double rotation, double deadband, boolean checkReverseButton) {
+		int multiplier = 1;
+		checkReverser();
+		if (checkReverseButton && reversed){ multiplier = -1; }
+		roboDrive.arcadeDrive(getDeadband(speed, deadband) * multiplier, getDeadband(rotation, deadband));
+	}
+
 	private void checkReverser(){
 		// WPILib wants you to use a command for button triggers, but nah
 		if (Robot.getOI().getController().getBButton()){
@@ -63,7 +70,7 @@ public class DriveSubsystem extends Subsystem {
 		}
 	}
 
-	private static double getDeadband(double value, double deadband) {
+	public double getDeadband(double value, double deadband) {
 		int sign = (value > 0 ? 1 : -1); // Check if value is + or -
 		value = Math.abs(value); // Change value to Positive
 		if (value <= deadband) {
@@ -71,6 +78,10 @@ public class DriveSubsystem extends Subsystem {
 		} else {
 			return (value - deadband) * sign; // returns value minus deadband
 		}
+	}
+
+	public double getDeadband(double value) {
+		return getDeadband(value, 0.01);
 	}
 
 	public void resetEncoders(){
@@ -83,6 +94,6 @@ public class DriveSubsystem extends Subsystem {
 	}
 
 	public enum DriveModes{
-		tank, arcade, rocketleague
+		tank, arcade, rocketleague, ryanDrive
 	}
 }

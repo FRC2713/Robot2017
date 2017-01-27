@@ -53,9 +53,10 @@ public class Robot extends IterativeRobot {
     }
 
     private void initDash() {
-        RobotMap.OIDriveMode.addDefault("Tank Drive", DriveSubsystem.DriveModes.tank);
-        RobotMap.OIDriveMode.addObject("Arcade Drive", DriveSubsystem.DriveModes.arcade);
-        SmartDashboard.putData("OI Mode", RobotMap.OIDriveMode);
+      RobotMap.OIDriveMode.addDefault("Tank Drive", DriveSubsystem.DriveModes.tank);
+      RobotMap.OIDriveMode.addObject("Arcade Drive", DriveSubsystem.DriveModes.arcade);
+			RobotMap.OIDriveMode.addObject("Ryan Drive", DriveSubsystem.DriveModes.ryanDrive);
+      SmartDashboard.putData("OI Mode", RobotMap.OIDriveMode);
     }
 
     private void initCamera() {
