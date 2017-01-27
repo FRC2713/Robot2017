@@ -1,5 +1,6 @@
 package org.usfirst.frc.team2713;
 
+import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -22,6 +23,7 @@ public class Robot extends IterativeRobot {
         oi = new OI();
 
         initSubsystems();
+        initCamera();
         initDash();
     }
 
@@ -55,6 +57,11 @@ public class Robot extends IterativeRobot {
         RobotMap.OIDriveMode.addObject("Arcade Drive", DriveSubsystem.DriveModes.arcade);
         SmartDashboard.putData("OI Mode", RobotMap.OIDriveMode);
     }
+
+    private void initCamera() {
+			CameraServer cs = CameraServer.getInstance();
+			cs.startAutomaticCapture();
+		}
 
     @Override
     public void teleopPeriodic() {
