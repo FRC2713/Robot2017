@@ -28,8 +28,7 @@ public class DriveSubsystem extends Subsystem {
 		bottomRight.changeControlMode(CANTalon.TalonControlMode.Follower);
 		bottomRight.set(RobotMap.TOP_RIGHT);
 
-		topLeft.configEncoderCodesPerRev(1440); // As per https://tinyurl.com/jt5u24u
-		topRight.configEncoderCodesPerRev(1440);
+		resetEncoders();
 
 		roboDrive = new RobotDrive(topLeft, topRight);
 	}
@@ -72,6 +71,15 @@ public class DriveSubsystem extends Subsystem {
 		} else {
 			return (value - deadband) * sign; // returns value minus deadband
 		}
+	}
+
+	public void resetEncoders(){
+		// 1 (c=6) rotation, ~1440 ticks/rotation, ~18.8495in
+		topLeft.setEncPosition(0);
+		topRight.setEncPosition(0);
+
+		topLeft.configEncoderCodesPerRev(1440); // As per https://tinyurl.com/jt5u24u
+		topRight.configEncoderCodesPerRev(1440);
 	}
 
 	public enum DriveModes{

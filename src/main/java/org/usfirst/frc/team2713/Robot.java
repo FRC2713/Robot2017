@@ -27,7 +27,7 @@ public class Robot extends IterativeRobot {
 
     @Override
     public void disabledInit() {
-
+        drive.resetEncoders();
     }
 
     @Override

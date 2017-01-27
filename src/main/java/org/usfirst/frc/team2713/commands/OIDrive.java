@@ -4,6 +4,7 @@ import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc.team2713.Robot;
 import org.usfirst.frc.team2713.RobotMap;
 import org.usfirst.frc.team2713.subsystems.DriveSubsystem;
@@ -28,8 +29,7 @@ public class OIDrive extends Command {
 
 	@Override
 	protected void execute() {
-		if (RobotMap.DEBUG) System.out.printf("[DEBUG] EncPos: topLeft: %d & %d, topRight: %d & %d\n",
-				drive.topLeft.getEncPosition(), drive.topLeft.getEncVelocity(), drive.topRight.getEncPosition(), drive.topRight.getEncVelocity());
+		SmartDashboard.putString("encoders", "topLeft: " + drive.topLeft.getEncPosition() + " & " + drive.topLeft.getEncVelocity() + "\ntopRight: " + drive.topRight.getEncPosition() + " & " + drive.topRight.getEncVelocity());
 		if (RobotMap.OIDriveMode.getSelected() == DriveSubsystem.DriveModes.tank){
 			drive.tankDrive(xbox.getY(Hand.kLeft)*scaler*polarity, xbox.getY(Hand.kRight)*scaler*polarity, deadband, true);
 		} else if (RobotMap.OIDriveMode.getSelected() == DriveSubsystem.DriveModes.arcade){
