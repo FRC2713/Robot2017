@@ -22,7 +22,7 @@ def robotManifest = {
 dependencies {
     compile wpilib()
     compile talonSrx()
-    compile 'com.github.juchong:ADIS16448-RoboRIO-Driver:master-SNAPSHOT'
+    compile 'com.github.iraiders:ADIS16448-RoboRIO-Driver:dev-SNAPSHOT'
 }
 
 jar {
