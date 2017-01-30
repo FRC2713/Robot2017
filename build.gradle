@@ -5,6 +5,10 @@ plugins {
     id "jaci.openrio.gradle.GradleRIO" version "2017.1.0"
 }
 
+repositories {
+    maven { url 'https://jitpack.io'}
+}
+
 frc {
     robotClass = 'org.usfirst.frc.team2713.Robot'
     team = '2713'
@@ -18,6 +22,7 @@ def robotManifest = {
 dependencies {
     compile wpilib()
     compile talonSrx()
+    compile 'com.github.juchong:ADIS16448-RoboRIO-Driver:master-SNAPSHOT'
 }
 
 jar {
