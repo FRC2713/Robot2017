@@ -16,5 +16,5 @@ public class RobotMap {
 	public static final int TOP_LEFT = 3;
 	public static final int BOTTOM_RIGHT = 2;
 	public static final int BOTTOM_LEFT = 4;
-
+	public static final int CLIMBER = 5;
 }

@@ -7,6 +7,7 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc.team2713.commands.AutonomousCommand;
+import org.usfirst.frc.team2713.subsystems.ClimbSubsystem;
 import org.usfirst.frc.team2713.subsystems.DriveSubsystem;
 
 public class Robot extends IterativeRobot {
@@ -14,6 +15,7 @@ public class Robot extends IterativeRobot {
     private static OI oi;
 
     private DriveSubsystem drive;
+		private ClimbSubsystem climb;
 
     Command autonomousCommand = new AutonomousCommand();
 
@@ -46,10 +48,12 @@ public class Robot extends IterativeRobot {
     public void teleopInit() {
         if (autonomousCommand != null) autonomousCommand.cancel();
         drive.startTeleop();
+			  climb.startClimb();
     }
 
     private void initSubsystems() {
         drive = new DriveSubsystem();
+        climb = new ClimbSubsystem();
     }
 
     private void initDash() {
