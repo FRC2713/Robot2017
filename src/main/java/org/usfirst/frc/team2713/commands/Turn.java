@@ -22,10 +22,10 @@ public class Turn extends Command {
     @Override
     protected void initialize() {
         TalonOutput output = new TalonOutput(robot.getDrive().getLeftTalon(), robot.getDrive().getRightTalon());
-        pid = new PIDController(0.1, 0.0001, 0.01, robot.getDrive().getIMU(), output);
+        pid = new PIDController(0.1, 0.0001, 0.01, robot.getDrive().getIMU(), output); // TODO: Tune PID
         pid.setContinuous();
         pid.setInputRange(-180D, 180D);
-        pid.setOutputRange(-1D, -1D);
+        pid.setOutputRange(-1D, 1D);
         pid.setAbsoluteTolerance(0.5D);
 
         double newAngle = (robot.getDrive().getIMU().getAngle() + 180 + angle) % 360 - 180;
