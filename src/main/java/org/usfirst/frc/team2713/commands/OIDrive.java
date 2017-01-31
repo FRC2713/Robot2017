@@ -29,8 +29,6 @@ public class OIDrive extends Command {
 
 	@Override
 	protected void execute() {
-		SmartDashboard.putString("encoders", "topLeft: " + drive.topLeft.getEncPosition() + " & " + drive.topLeft.getEncVelocity() + "\ntopRight: " + drive.topRight.getEncPosition() + " & " + drive.topRight.getEncVelocity());
-
 		if (RobotMap.OIDriveMode.getSelected() == DriveSubsystem.DriveModes.tank){
 			drive.tankDrive(xbox.getY(Hand.kLeft)*scaler*polarity, xbox.getY(Hand.kRight)*scaler*polarity, deadband, true);
 		} else if (RobotMap.OIDriveMode.getSelected() == DriveSubsystem.DriveModes.ryanDrive){

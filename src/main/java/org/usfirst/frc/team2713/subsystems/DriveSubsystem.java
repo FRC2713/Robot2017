@@ -1,6 +1,7 @@
 package org.usfirst.frc.team2713.subsystems;
 
 
+import com.analog.adis16448.frc.ADIS16448_IMU;
 import com.ctre.CANTalon;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -9,12 +10,13 @@ import org.usfirst.frc.team2713.RobotMap;
 import org.usfirst.frc.team2713.commands.OIDrive;
 
 public class DriveSubsystem extends Subsystem {
-	private Robot robot = Robot.getRobot();
-	public CANTalon topLeft = new CANTalon(RobotMap.TOP_LEFT); // Has an e4p360250 encoder
-	public CANTalon topRight = new CANTalon(RobotMap.TOP_RIGHT); // And me!
+	private CANTalon topLeft = new CANTalon(RobotMap.TOP_LEFT); // Has an e4p360250 encoder
+	private CANTalon topRight = new CANTalon(RobotMap.TOP_RIGHT); // And me!
 	private CANTalon bottomLeft = new CANTalon(RobotMap.BOTTOM_LEFT);
 	private CANTalon bottomRight = new CANTalon(RobotMap.BOTTOM_RIGHT);
-	public RobotDrive roboDrive;
+	private RobotDrive roboDrive;
+
+	private ADIS16448_IMU imu = new ADIS16448_IMU();
 
 	private boolean reversed = false;
 
@@ -45,27 +47,32 @@ public class DriveSubsystem extends Subsystem {
 	public void tankDrive(double left, double right, double deadband, boolean checkReverseButton) {
 		int multiplier = 1;
 		checkReverser();
-		if (checkReverseButton && reversed){ multiplier = -1; }
+		if (checkReverseButton && reversed) {
+			multiplier = -1;
+		}
 		roboDrive.tankDrive(getDeadband(left, deadband) * multiplier, getDeadband(right, deadband) * multiplier);
 	}
 
 	public void arcadeDrive(double speed, double rotation, double deadband, boolean checkReverseButton) {
 		int multiplier = 1;
 		checkReverser();
-		if (checkReverseButton && reversed){ multiplier = -1; }
+		if (checkReverseButton && reversed)
+		{
+			multiplier = -1;
+		}
 		roboDrive.arcadeDrive(getDeadband(speed, deadband) * multiplier, getDeadband(rotation, deadband));
 	}
 
-	private void checkReverser(){
+	private void checkReverser() {
 		// WPILib wants you to use a command for button triggers, but nah
-		if (Robot.getOI().getController().getBButton()){
+		if (Robot.getOI().getController().getBButton()) {
 			lastButtonState = isPressed;
 			isPressed = true;
-		} else if (!Robot.getOI().getController().getBButton()){
+		} else if (!Robot.getOI().getController().getBButton()) {
 			lastButtonState = isPressed;
 			isPressed = false;
 		}
-		if (isPressed && !lastButtonState){
+		if (isPressed && !lastButtonState) {
 			reversed = !reversed;
 		}
 	}
@@ -84,7 +91,7 @@ public class DriveSubsystem extends Subsystem {
 		return getDeadband(value, 0.01);
 	}
 
-	public void resetEncoders(){
+	public void resetEncoders() {
 		// 1 (c=6) rotation, ~1440 ticks/rotation, ~18.8495in
 		topLeft.setEncPosition(0);
 		topRight.setEncPosition(0);
@@ -93,7 +100,19 @@ public class DriveSubsystem extends Subsystem {
 		topRight.configEncoderCodesPerRev(1440);
 	}
 
-	public enum DriveModes{
+	public CANTalon getLeftTalon() {
+		return topLeft;
+	}
+
+	public CANTalon getRightTalon() {
+		return topRight;
+	}
+
+	public ADIS16448_IMU getIMU() {
+		return imu;
+	}
+
+	public enum DriveModes {
 		tank, arcade, rocketleague, ryanDrive
 	}
 }

@@ -15,7 +15,7 @@ public class Robot extends IterativeRobot {
     private static OI oi;
 
     private DriveSubsystem drive;
-		private ClimbSubsystem climb;
+    private ClimbSubsystem climb;
 
     Command autonomousCommand = new AutonomousCommand();
 
@@ -48,7 +48,7 @@ public class Robot extends IterativeRobot {
     public void teleopInit() {
         if (autonomousCommand != null) autonomousCommand.cancel();
         drive.startTeleop();
-			  climb.startClimb();
+	    climb.startClimb();
     }
 
     private void initSubsystems() {
@@ -57,16 +57,20 @@ public class Robot extends IterativeRobot {
     }
 
     private void initDash() {
-      RobotMap.OIDriveMode.addDefault("Tank Drive", DriveSubsystem.DriveModes.tank);
-      RobotMap.OIDriveMode.addObject("Arcade Drive", DriveSubsystem.DriveModes.arcade);
-			RobotMap.OIDriveMode.addObject("Ryan Drive", DriveSubsystem.DriveModes.ryanDrive);
-      SmartDashboard.putData("OI Mode", RobotMap.OIDriveMode);
+        RobotMap.OIDriveMode.addDefault("Tank Drive", DriveSubsystem.DriveModes.tank);
+        RobotMap.OIDriveMode.addObject("Arcade Drive", DriveSubsystem.DriveModes.arcade);
+        RobotMap.OIDriveMode.addObject("Ryan Drive", DriveSubsystem.DriveModes.ryanDrive);
+        SmartDashboard.putData("OI Mode", RobotMap.OIDriveMode);
     }
 
     private void initCamera() {
-			CameraServer cs = CameraServer.getInstance();
-			cs.startAutomaticCapture();
-		}
+		CameraServer cs = CameraServer.getInstance();
+		cs.startAutomaticCapture();
+    }
+
+    public DriveSubsystem getDrive() {
+        return drive;
+    }
 
     @Override
     public void teleopPeriodic() {
@@ -78,7 +82,11 @@ public class Robot extends IterativeRobot {
         LiveWindow.run();
     }
 
-    public static Robot getRobot(){ return robotInstance; }
+    public static Robot getRobot() {
+        return robotInstance;
+    }
 
-    public static OI getOI(){ return oi; }
+    public static OI getOI() {
+        return oi;
+    }
 }
