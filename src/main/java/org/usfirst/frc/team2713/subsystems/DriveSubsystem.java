@@ -1,8 +1,8 @@
 package org.usfirst.frc.team2713.subsystems;
 
-
 import com.analog.adis16448.frc.ADIS16448_IMU;
 import com.ctre.CANTalon;
+import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import org.usfirst.frc.team2713.Robot;
@@ -74,6 +74,15 @@ public class DriveSubsystem extends Subsystem {
 		}
 		if (isPressed && !lastButtonState) {
 			reversed = !reversed;
+			new Thread(() -> {
+				Robot.getOI().getController().setRumble(GenericHID.RumbleType.kLeftRumble, 1);
+				try {
+					Thread.sleep(100);
+				} catch (InterruptedException e) {
+					System.out.println("Rumble Delay Called");
+				}
+				Robot.getOI().getController().setRumble(GenericHID.RumbleType.kLeftRumble, 0);
+			}).start();
 		}
 	}
 
