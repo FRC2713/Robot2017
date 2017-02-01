@@ -28,7 +28,7 @@ public class Turn extends Command {
         pid.setOutputRange(-1D, 1D);
         pid.setAbsoluteTolerance(0.5D);
 
-        double newAngle = (robot.getDrive().getIMU().getAngle() + 180 + angle) % 360 - 180;
+        double newAngle = (robot.getDrive().getIMU().getAngle() + 180D + angle) % 360D - 180D;
         pid.setSetpoint(newAngle);
     }
 

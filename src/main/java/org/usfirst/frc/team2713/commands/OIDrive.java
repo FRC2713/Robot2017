@@ -4,7 +4,6 @@ import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc.team2713.Robot;
 import org.usfirst.frc.team2713.RobotMap;
 import org.usfirst.frc.team2713.subsystems.DriveSubsystem;
@@ -34,6 +33,17 @@ public class OIDrive extends Command {
 		} else if (RobotMap.OIDriveMode.getSelected() == DriveSubsystem.DriveModes.ryanDrive){
 			double speed = drive.getDeadband(xbox.getY(Hand.kLeft));
 			double rotation = drive.getDeadband(xbox.getX(Hand.kRight));
+			drive.arcadeDrive(speed*scaler*polarity, rotation*scaler*polarity, deadband, false);
+		} else if (RobotMap.OIDriveMode.getSelected() == DriveSubsystem.DriveModes.rocketleague){
+			double speed;
+			if(xbox.getTrigger(Hand.kRight) && !xbox.getTrigger(Hand.kLeft)){
+				speed = drive.getDeadband(xbox.getTriggerAxis(Hand.kRight));
+			}else if(xbox.getTrigger(Hand.kLeft) && !xbox.getTrigger(Hand.kRight)){
+				speed = -drive.getDeadband(xbox.getTriggerAxis(Hand.kLeft));
+			}else{
+				speed = 0;
+			}
+			double rotation = drive.getDeadband(xbox.getX((Hand.kLeft)));
 			drive.arcadeDrive(speed*scaler*polarity, rotation*scaler*polarity, deadband, false);
 		}
 	}

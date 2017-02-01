@@ -60,6 +60,7 @@ public class Robot extends IterativeRobot {
         RobotMap.OIDriveMode.addDefault("Tank Drive", DriveSubsystem.DriveModes.tank);
         RobotMap.OIDriveMode.addObject("Arcade Drive", DriveSubsystem.DriveModes.arcade);
         RobotMap.OIDriveMode.addObject("Ryan Drive", DriveSubsystem.DriveModes.ryanDrive);
+        RobotMap.OIDriveMode.addObject("Rocket League Drive", DriveSubsystem.DriveModes.rocketleague);
         SmartDashboard.putData("OI Mode", RobotMap.OIDriveMode);
     }
 
