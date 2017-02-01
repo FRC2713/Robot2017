@@ -79,7 +79,7 @@ public class DriveSubsystem extends Subsystem {
 				try {
 					Thread.sleep(100);
 				} catch (InterruptedException e) {
-					System.out.println("Rumble Delay Called");
+					// Nuthin'
 				}
 				Robot.getOI().getController().setRumble(GenericHID.RumbleType.kLeftRumble, 0);
 			}).start();
