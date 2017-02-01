@@ -5,6 +5,7 @@ import edu.wpi.first.wpilibj.XboxController;
 
 public class OI {
 	private XboxController xBoxController;
+	private XboxController fightController;
 
 	public OI(){
 		initControllers();
@@ -17,9 +18,9 @@ public class OI {
 	public XboxController getController(ControllerType t) {
 		switch (t) {
 			case xbox: return xBoxController;
+			case fight: return fightController;
 			default: return xBoxController;
 		}
-		//TODO Implement other controllers besides XBox
 	}
 
 	private void initControllers() {
@@ -27,15 +28,20 @@ public class OI {
 			Joystick test = new Joystick(i);
 			if (test.getName().equals(RobotMap.XBOX_NAME)) {
 				xBoxController = new XboxController(i);
+			} else if (test.getName().equals(RobotMap.FIGHT_NAME)){
+				fightController = new XboxController(i);
 			}
 		}
 		if (xBoxController == null) {
 			xBoxController = new XboxController(RobotMap.BACKUP_XBOX_PORT);
 		}
+		if (fightController == null) {
+			fightController = new XboxController(1);
+		}
 	}
 
 	public enum ControllerType {
-		xbox
+		xbox, fight
 	}
 }
 
