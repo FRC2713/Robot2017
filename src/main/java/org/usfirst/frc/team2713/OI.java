@@ -36,7 +36,7 @@ public class OI {
 			xBoxController = new XboxController(RobotMap.BACKUP_XBOX_PORT);
 		}
 		if (fightController == null) {
-			fightController = new XboxController(1);
+			fightController = new XboxController(RobotMap.BACKUP_ATTACK_PORT);
 		}
 	}
 

@@ -19,4 +19,8 @@ public class RobotMap {
 	public static final int BOTTOM_RIGHT = 2;
 	public static final int BOTTOM_LEFT = 4;
 	public static final int CLIMBER = 5;
+	
+	// Servo Ports
+	public static final int LOW_GATE_SERVO = 0;
+	public static final int HIGH_GATE_SERVO = 1;
 }
