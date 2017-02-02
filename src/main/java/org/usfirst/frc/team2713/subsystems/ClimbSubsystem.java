@@ -7,11 +7,12 @@ import org.usfirst.frc.team2713.commands.ClimbCommand;
 
 public class ClimbSubsystem extends Subsystem {
 	public CANTalon climbMotor = new CANTalon(RobotMap.CLIMBER);
-
-	public void startClimb(){
+	
+	public void startClimb() {
 		new ClimbCommand(this).start();
 	}
-
+	
 	@Override
-	protected void initDefaultCommand() {}
+	protected void initDefaultCommand() {
+	}
 }

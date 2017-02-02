@@ -22,19 +22,21 @@ public class GateCommand extends Command {
 	
 	@Override
 	public void execute() {
-		if (Robot.getOI().getController(OI.ControllerType.fight).getRawButton(1)){
+		if (Robot.getOI().getController(OI.ControllerType.fight).getRawButton(1)) {
 			lowServo.setAngle(closedDegree);
-		} else if (Robot.getOI().getController(OI.ControllerType.fight).getRawButton(5)){
+		} else if (Robot.getOI().getController(OI.ControllerType.fight).getRawButton(5)) {
 			lowServo.setAngle(openDegree);
 		}
 		
-		if (Robot.getOI().getController(OI.ControllerType.fight).getRawButton(2)){
+		if (Robot.getOI().getController(OI.ControllerType.fight).getRawButton(2)) {
 			highServo.setAngle(closedDegree);
-		} else if (Robot.getOI().getController(OI.ControllerType.fight).getRawButton(6)){
+		} else if (Robot.getOI().getController(OI.ControllerType.fight).getRawButton(6)) {
 			highServo.setAngle(openDegree);
 		}
 	}
 	
 	@Override
-	protected boolean isFinished() { return false; }
+	protected boolean isFinished() {
+		return false;
+	}
 }

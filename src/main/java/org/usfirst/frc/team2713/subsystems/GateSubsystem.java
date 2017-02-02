@@ -14,5 +14,6 @@ public class GateSubsystem extends Subsystem {
 	}
 	
 	@Override
-	protected void initDefaultCommand() {}
+	protected void initDefaultCommand() {
+	}
 }
