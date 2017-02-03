@@ -33,7 +33,7 @@ public class OIDrive extends Command {
 		} else if (RobotMap.OIDriveMode.getSelected() == DriveSubsystem.DriveModes.ryanDrive){
 			double speed = drive.getDeadband(xbox.getY(Hand.kLeft));
 			double rotation = drive.getDeadband(xbox.getX(Hand.kRight));
-			drive.arcadeDrive(speed*scaler*polarity, rotation*scaler*polarity, deadband, false);
+			drive.arcadeDrive(speed*scaler*polarity, rotation*scaler*polarity, deadband, true);
 		} else if (RobotMap.OIDriveMode.getSelected() == DriveSubsystem.DriveModes.rocketleague){
 			double speed;
 			if(xbox.getTrigger(Hand.kRight) && !xbox.getTrigger(Hand.kLeft)){

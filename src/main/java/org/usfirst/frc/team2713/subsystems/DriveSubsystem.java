@@ -59,7 +59,7 @@ public class DriveSubsystem extends Subsystem {
 		if (checkReverseButton && reversed) {
 			multiplier = -1;
 		}
-		roboDrive.arcadeDrive(getDeadband(speed, deadband) * multiplier, getDeadband(rotation, deadband));
+		roboDrive.arcadeDrive(getDeadband(speed, deadband) * multiplier, getDeadband(rotation, deadband) * multiplier);
 	}
 	
 	private void checkReverser() {
