@@ -18,7 +18,7 @@ public class ClimbCommand extends Command {
 	@Override
 	public void execute() {
 		double upSpeed = Robot.getOI().getController().getTriggerAxis(GenericHID.Hand.kLeft);
-		double downSpeed = Robot.getOI().getController().getTriggerAxis(GenericHID.Hand.kRight);
+		double downSpeed = -(Robot.getOI().getController().getTriggerAxis(GenericHID.Hand.kRight));
 		if (upSpeed != 0 && downSpeed == 0) {
 			motor.set(upSpeed);
 		} else if (downSpeed != 0 && upSpeed == 0) {
