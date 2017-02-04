@@ -35,7 +35,7 @@ build/
 
 # JRebel
 rebel.xml
-reble-remote.xml
+rebel-remote.xml
 
 # Someone uses a Mac...
 .DS_Store
