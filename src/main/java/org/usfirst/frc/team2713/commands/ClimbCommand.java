@@ -31,6 +31,8 @@ public class ClimbCommand extends Command {
 		} else if (isDown){
 			tally+=increment;
 			downSpeed = 0.1 + tally;
+		} else if (tally >= 0){
+			tally-=increment;
 		} else {
 			tally = 0;
 		}
@@ -38,7 +40,7 @@ public class ClimbCommand extends Command {
 		if (upSpeed != 0 && downSpeed == 0) {
 			motor.set(upSpeed);
 		} else if (downSpeed != 0 && upSpeed == 0) {
-			motor.set(downSpeed);
+			motor.set(-downSpeed);
 		} else {
 			motor.set(0);
 		}
