@@ -118,6 +118,6 @@ public class DriveSubsystem extends Subsystem {
 	}
 	
 	public enum DriveModes {
-		tank, arcade, rocketleague, ryanDrive
+		tank, arcade, rocketleague, therian
 	}
 }

@@ -32,7 +32,7 @@ public class OIDrive extends Command {
 			case tank:
 				drive.tankDrive(xbox.getY(Hand.kLeft) * scaler * polarity, xbox.getY(Hand.kRight) * scaler * polarity, deadband, true);
 				break;
-			case ryanDrive:
+			case therian:
 				double speed = drive.getDeadband(xbox.getY(Hand.kLeft));
 				double rotation = drive.getDeadband(xbox.getX(Hand.kRight));
 				drive.arcadeDrive(speed * scaler * polarity, rotation * scaler * polarity, deadband, true);
