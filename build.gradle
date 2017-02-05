@@ -12,6 +12,7 @@ repositories {
 frc {
     robotClass = 'org.usfirst.frc.team2713.Robot'
     team = '2713'
+    rioIP = '10.27.13.103'
 }
 
 def robotManifest = {
