@@ -22,9 +22,11 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void robotInit() {
 		robotInstance = this;
-		oi = new OI();
 		
 		initSubsystems();
+
+		oi = new OI();
+
 		initCamera();
 		initDash();
 	}
@@ -59,7 +61,7 @@ public class Robot extends IterativeRobot {
 	private void initDash() {
 		RobotMap.OIDriveMode.addDefault("Tank Drive", DriveSubsystem.DriveModes.tank);
 		RobotMap.OIDriveMode.addObject("Arcade Drive", DriveSubsystem.DriveModes.arcade);
-		RobotMap.OIDriveMode.addObject("Therian Drive", DriveSubsystem.DriveModes.ryanDrive);
+		RobotMap.OIDriveMode.addObject("Therian Drive", DriveSubsystem.DriveModes.therian);
 		RobotMap.OIDriveMode.addObject("Rocket League", DriveSubsystem.DriveModes.rocketleague);
 		SmartDashboard.putData("OI Mode", RobotMap.OIDriveMode);
 	}
