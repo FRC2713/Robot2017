@@ -45,21 +45,18 @@ public class DriveSubsystem extends Subsystem {
 	}
 	
 	public void tankDrive(double left, double right, double deadband, boolean checkReverseButton) {
-		int multiplier = 1;
-		checkReverser();
-		if (checkReverseButton && reversed) {
-			multiplier = -1;
-		}
+		int multiplier = getMultiplier(checkReverseButton);
 		roboDrive.tankDrive(getDeadband(left, deadband) * multiplier, getDeadband(right, deadband) * multiplier);
 	}
-	
+
 	public void arcadeDrive(double speed, double rotation, double deadband, boolean checkReverseButton) {
-		int multiplier = 1;
+		int multiplier = getMultiplier(checkReverseButton);
+		roboDrive.arcadeDrive(getDeadband(speed, deadband) * multiplier, getDeadband(rotation, deadband));
+	}
+
+	private int getMultiplier(boolean checkReverse) {
 		checkReverser();
-		if (checkReverseButton && reversed) {
-			multiplier = -1;
-		}
-		roboDrive.arcadeDrive(getDeadband(speed, deadband) * multiplier, getDeadband(rotation, deadband) * multiplier);
+		return checkReverse && reversed ? -1 : 1;
 	}
 	
 	private void checkReverser() {

@@ -28,23 +28,31 @@ public class OIDrive extends Command {
 
 	@Override
 	protected void execute() {
-		if (RobotMap.OIDriveMode.getSelected() == DriveSubsystem.DriveModes.tank){
-			drive.tankDrive(xbox.getY(Hand.kLeft)*scaler*polarity, xbox.getY(Hand.kRight)*scaler*polarity, deadband, true);
-		} else if (RobotMap.OIDriveMode.getSelected() == DriveSubsystem.DriveModes.ryanDrive){
-			double speed = drive.getDeadband(xbox.getY(Hand.kLeft));
-			double rotation = drive.getDeadband(xbox.getX(Hand.kRight));
-			drive.arcadeDrive(speed*scaler*polarity, rotation*scaler*polarity, deadband, true);
-		} else if (RobotMap.OIDriveMode.getSelected() == DriveSubsystem.DriveModes.rocketleague){
-			double speed;
-			if(xbox.getTrigger(Hand.kRight) && !xbox.getTrigger(Hand.kLeft)){
-				speed = drive.getDeadband(xbox.getTriggerAxis(Hand.kRight));
-			}else if(xbox.getTrigger(Hand.kLeft) && !xbox.getTrigger(Hand.kRight)){
-				speed = -drive.getDeadband(xbox.getTriggerAxis(Hand.kLeft));
-			}else{
-				speed = 0;
-			}
-			double rotation = drive.getDeadband(xbox.getX((Hand.kLeft)));
-			drive.arcadeDrive(speed*scaler*polarity, rotation*scaler*polarity, deadband, false);
+		switch ((DriveSubsystem.DriveModes) RobotMap.OIDriveMode.getSelected()) {
+			case tank:
+				drive.tankDrive(xbox.getY(Hand.kLeft) * scaler * polarity, xbox.getY(Hand.kRight) * scaler * polarity, deadband, true);
+				break;
+			case ryanDrive:
+				double speed = drive.getDeadband(xbox.getY(Hand.kLeft));
+				double rotation = drive.getDeadband(xbox.getX(Hand.kRight));
+				drive.arcadeDrive(speed * scaler * polarity, rotation * scaler * polarity, deadband, true);
+				break;
+			case arcade:
+				speed = drive.getDeadband(xbox.getY(Hand.kLeft));
+				rotation = drive.getDeadband(xbox.getY(Hand.kLeft));
+				drive.arcadeDrive(speed * scaler * polarity, rotation * scaler * polarity, deadband, true);
+				break;
+			case rocketleague:
+				if (xbox.getTrigger(Hand.kRight) && !xbox.getTrigger(Hand.kLeft)) {
+					speed = drive.getDeadband(xbox.getTriggerAxis(Hand.kRight));
+				} else if (xbox.getTrigger(Hand.kLeft) && !xbox.getTrigger(Hand.kRight)) {
+					speed = -drive.getDeadband(xbox.getTriggerAxis(Hand.kLeft));
+				} else {
+					speed = 0;
+				}
+				rotation = drive.getDeadband(xbox.getX((Hand.kLeft)));
+				drive.arcadeDrive(speed*scaler*polarity, rotation*scaler*polarity, deadband, false);
+				break;
 		}
 	}
 
