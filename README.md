@@ -13,12 +13,26 @@ Gradle will automatically create IDE project files when necessary.
 4. Use the pop-up in the bottom-right corner (or the Event Log if you do not
 catch it) to import the project using Gradle.
 
-### Import into Eclipse
+### Importing into Eclipse
 1. Clone the repository using the method of your choice.
 2. Open the command line and point it to the root directory of the repository.
 3. Run the command `gradlew eclipse`.
 4. Use the Eclipse project wizard to import the repository as an
 'Existing Project'.
+
+### Updating Dependencies
+When dependencies are updated, the IDE will not automatically refresh them.
+Instead, you must sync them yourself.
+
+#### IntelliJ IDEA
+1. Go to `View > Tool Windows > Gradle`
+2. Click the Sync button (left of the + sign).
+3. Wait for dependencies to update.
+
+#### Eclipse
+1. **Close Eclipse.** Seriously, you have to.
+2. Rerun `gradlew eclipse`.
+3. Reopen Eclipse.
 
 ## Deploying
 
