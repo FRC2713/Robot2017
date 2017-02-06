@@ -9,6 +9,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc.team2713.commands.AutonomousCommand;
 import org.usfirst.frc.team2713.subsystems.ClimbSubsystem;
 import org.usfirst.frc.team2713.subsystems.DriveSubsystem;
+import org.usfirst.frc.team2713.subsystems.GateSubsystem;
 
 public class Robot extends IterativeRobot {
 	private static Robot robotInstance;
@@ -16,6 +17,7 @@ public class Robot extends IterativeRobot {
 	
 	private DriveSubsystem drive;
 	private ClimbSubsystem climb;
+	private GateSubsystem gate;
 	
 	Command autonomousCommand = new AutonomousCommand();
 	
@@ -51,11 +53,13 @@ public class Robot extends IterativeRobot {
 		if (autonomousCommand != null) autonomousCommand.cancel();
 		drive.startTeleop();
 		climb.startClimb();
+		gate.startGate();
 	}
 	
 	private void initSubsystems() {
 		drive = new DriveSubsystem();
 		climb = new ClimbSubsystem();
+		gate = new GateSubsystem();
 	}
 	
 	private void initDash() {
