@@ -22,19 +22,22 @@ public class ClimbCommand extends Command {
 		double increment = 0.01;
 		double upSpeed = 0;
 		double downSpeed = 0;
-		boolean isUp = Robot.getOI().getController(OI.ControllerType.fight).getRawButton(8); // Climb Up
-		boolean isDown = Robot.getOI().getController(OI.ControllerType.fight).getRawButton(4); // Climb Down
+		boolean isUpFast = Robot.getOI().getController(OI.ControllerType.fight).getRawButton(8); // Climb Up
+		boolean isDownFast = Robot.getOI().getController(OI.ControllerType.fight).getRawButton(4); // Climb Down
+		boolean isUpSlow = Robot.getOI().getController(OI.ControllerType.fight).getRawButton(7);
+		boolean isDownSlow = Robot.getOI().getController(OI.ControllerType.fight).getRawButton(3);
 		
-		if (isUp){
-			tally+=increment;
-			upSpeed = 0.1 + tally;
-		} else if (isDown){
-			tally+=increment;
-			downSpeed = 0.1 + tally;
-		} else if (tally >= 0){
-			tally-=increment;
+		if (isDownFast) {
+			downSpeed = 1;
+		} else if (isDownSlow) {
+			downSpeed = .5;
+		} else if (isUpFast) {
+			upSpeed = 1;
+		} else if (isUpSlow) {
+			upSpeed = .5;
 		} else {
-			tally = 0;
+			upSpeed = 0;
+			downSpeed = 0;
 		}
 		
 		if (upSpeed != 0 && downSpeed == 0) {
