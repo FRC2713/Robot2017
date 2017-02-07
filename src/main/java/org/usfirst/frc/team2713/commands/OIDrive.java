@@ -39,19 +39,19 @@ public class OIDrive extends Command {
 				break;
 			case arcade:
 				speed = drive.getDeadband(xbox.getY(Hand.kLeft));
-				rotation = drive.getDeadband(xbox.getY(Hand.kLeft));
+				rotation = drive.getDeadband(xbox.getX(Hand.kLeft));
 				drive.arcadeDrive(speed * scaler * polarity, rotation * scaler * polarity, deadband, true);
 				break;
 			case rocketleague:
-				if (xbox.getTrigger(Hand.kRight) && !xbox.getTrigger(Hand.kLeft)) {
+				if (xbox.getTriggerAxis(Hand.kRight) !=0 && xbox.getTriggerAxis(Hand.kLeft) == 0) {
 					speed = drive.getDeadband(xbox.getTriggerAxis(Hand.kRight));
-				} else if (xbox.getTrigger(Hand.kLeft) && !xbox.getTrigger(Hand.kRight)) {
+				} else if (xbox.getTriggerAxis(Hand.kLeft) != 0 && xbox.getTriggerAxis(Hand.kRight) == 0) {
 					speed = -drive.getDeadband(xbox.getTriggerAxis(Hand.kLeft));
 				} else {
 					speed = 0;
 				}
 				rotation = drive.getDeadband(xbox.getX((Hand.kLeft)));
-				drive.arcadeDrive(speed*scaler*polarity, rotation*scaler*polarity, deadband, false);
+				drive.arcadeDrive(speed*scaler*polarity, rotation*scaler*polarity, deadband, true);
 				break;
 		}
 	}
