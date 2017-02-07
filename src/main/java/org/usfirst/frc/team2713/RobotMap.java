@@ -19,6 +19,8 @@ public class RobotMap {
 	public static final int BOTTOM_RIGHT = 2;
 	public static final int BOTTOM_LEFT = 4;
 	public static final int CLIMBER = 5;
+	public static final int HIGH_GOAL_FLY_WHEEL = 6;
+	public static final int HIGH_GOAL_KICKER = 7;
 	
 	// Servo Ports
 	public static final int LOW_GATE_SERVO = 0;

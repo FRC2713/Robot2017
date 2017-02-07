@@ -34,11 +34,6 @@ public class Turn extends Command {
 	}
 
 	@Override
-	protected void interrupted() {
-		pid.disable();
-	}
-
-	@Override
 	protected void end() {
 		pid.disable();
 	}
