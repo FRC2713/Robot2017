@@ -44,14 +44,14 @@ public class OIDrive extends Command {
 				break;
 			case rocketleague:
 				if (xbox.getTriggerAxis(Hand.kRight) !=0 && xbox.getTriggerAxis(Hand.kLeft) == 0) {
-					speed = drive.getDeadband(xbox.getTriggerAxis(Hand.kRight));
+					speed = -drive.getDeadband(xbox.getTriggerAxis(Hand.kRight));
 				} else if (xbox.getTriggerAxis(Hand.kLeft) != 0 && xbox.getTriggerAxis(Hand.kRight) == 0) {
-					speed = -drive.getDeadband(xbox.getTriggerAxis(Hand.kLeft));
+					speed = drive.getDeadband(xbox.getTriggerAxis(Hand.kLeft));
 				} else {
 					speed = 0;
 				}
-				rotation = drive.getDeadband(xbox.getX((Hand.kLeft)));
-				drive.arcadeDrive(speed*scaler*polarity, rotation*scaler*polarity, deadband, true);
+				rotation = drive.getDeadband(xbox.getX(Hand.kLeft));
+				drive.arcadeDrive(speed*scaler*polarity, (rotation*-speed)*scaler*polarity, deadband, true);
 				break;
 		}
 	}
