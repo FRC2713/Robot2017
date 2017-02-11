@@ -77,6 +77,7 @@ public class Robot extends IterativeRobot {
 		RobotMap.startingPosition.addDefault("Position 1 (left)", 1);
 		RobotMap.startingPosition.addObject("Position 2 (middle)", 2);
 		RobotMap.startingPosition.addObject("Position 3 (right)", 3);
+		SmartDashboard.putData("Starting Position", RobotMap.startingPosition);
 	}
 
 	private void initCamera() {
