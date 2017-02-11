@@ -24,6 +24,7 @@ public class GateCommand extends Command {
 	
 	@Override
 	protected boolean isFinished() {
-		return false;
+		double currentAngle = servo.getAngle();
+		return currentAngle == degree - 2 || currentAngle == degree + 2;
 	}
 }
