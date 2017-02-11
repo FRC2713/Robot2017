@@ -10,13 +10,13 @@ public class ClimbCommand extends Command {
 	private ClimbSubsystem climbSubsystem;
 	private CANTalon motor;
 	private double tally = 0;
-	
+
 	public ClimbCommand(ClimbSubsystem climbSubsystem) {
 		requires(climbSubsystem);
 		this.climbSubsystem = climbSubsystem;
 		this.motor = climbSubsystem.climbMotor;
 	}
-	
+
 	@Override
 	public void execute() {
 		double increment = 0.01;
@@ -26,7 +26,7 @@ public class ClimbCommand extends Command {
 		boolean isDownFast = Robot.getOI().getController(OI.ControllerType.fight).getRawButton(4); // Climb Down
 		boolean isUpSlow = Robot.getOI().getController(OI.ControllerType.fight).getRawButton(7);
 		boolean isDownSlow = Robot.getOI().getController(OI.ControllerType.fight).getRawButton(3);
-		
+
 		if (isDownFast) {
 			downSpeed = 1;
 		} else if (isDownSlow) {
@@ -39,7 +39,7 @@ public class ClimbCommand extends Command {
 			upSpeed = 0;
 			downSpeed = 0;
 		}
-		
+
 		if (upSpeed != 0 && downSpeed == 0) {
 			motor.set(upSpeed);
 		} else if (downSpeed != 0 && upSpeed == 0) {
@@ -48,7 +48,7 @@ public class ClimbCommand extends Command {
 			motor.set(0);
 		}
 	}
-	
+
 	@Override
 	protected boolean isFinished() {
 		return false;

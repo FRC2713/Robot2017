@@ -6,15 +6,15 @@ import edu.wpi.first.wpilibj.XboxController;
 public class OI {
 	private XboxController xBoxController;
 	private XboxController fightController;
-	
+
 	public OI() {
 		initControllers();
 	}
-	
+
 	public XboxController getController() {
 		return xBoxController;
 	}
-	
+
 	public XboxController getController(ControllerType t) {
 		switch (t) {
 			case xbox:
@@ -25,7 +25,7 @@ public class OI {
 				return xBoxController;
 		}
 	}
-	
+
 	private void initControllers() {
 		for (int i = 0; i < 6; i++) {
 			Joystick test = new Joystick(i);
@@ -42,7 +42,7 @@ public class OI {
 			fightController = new XboxController(RobotMap.BACKUP_ATTACK_PORT);
 		}
 	}
-	
+
 	public enum ControllerType {
 		xbox, fight
 	}

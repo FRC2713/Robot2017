@@ -11,12 +11,13 @@ import org.usfirst.frc.team2713.commands.HighGoalCommand;
 public class HighGoalSubsystem extends Subsystem {
 	public CANTalon flyWheel = new CANTalon(RobotMap.HIGH_GOAL_FLY_WHEEL);
 	public CANTalon kicker = new CANTalon(RobotMap.HIGH_GOAL_KICKER);
-	
+
 	public void startHighGoal() {
 		JoystickButton button = new JoystickButton(Robot.getOI().getController(OI.ControllerType.xbox), 4);
 		button.whenPressed(new HighGoalCommand(this));
 	}
-	
+
 	@Override
-	protected void initDefaultCommand() {}
+	protected void initDefaultCommand() {
+	}
 }

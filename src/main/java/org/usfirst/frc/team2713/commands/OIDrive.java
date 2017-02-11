@@ -43,7 +43,7 @@ public class OIDrive extends Command {
 				drive.arcadeDrive(speed * scaler * polarity, rotation * scaler * polarity, deadband, true);
 				break;
 			case rocketleague:
-				if (xbox.getTriggerAxis(Hand.kRight) !=0 && xbox.getTriggerAxis(Hand.kLeft) == 0) {
+				if (xbox.getTriggerAxis(Hand.kRight) != 0 && xbox.getTriggerAxis(Hand.kLeft) == 0) {
 					speed = -drive.getDeadband(xbox.getTriggerAxis(Hand.kRight));
 				} else if (xbox.getTriggerAxis(Hand.kLeft) != 0 && xbox.getTriggerAxis(Hand.kRight) == 0) {
 					speed = drive.getDeadband(xbox.getTriggerAxis(Hand.kLeft));
@@ -51,17 +51,21 @@ public class OIDrive extends Command {
 					speed = 0;
 				}
 				rotation = drive.getDeadband(xbox.getX(Hand.kLeft));
-				drive.arcadeDrive(speed*scaler*polarity, (rotation*-speed)*scaler*polarity, deadband, true);
+				drive.arcadeDrive(speed * scaler * polarity, (rotation * -speed) * scaler * polarity, deadband, true);
 				break;
 		}
 	}
 
 	@Override
-	protected boolean isFinished(){ return false; }
+	protected boolean isFinished() {
+		return false;
+	}
 
 	@Override
-	protected void end(){}
+	protected void end() {
+	}
 
 	@Override
-	protected void interrupted(){}
+	protected void interrupted() {
+	}
 }
