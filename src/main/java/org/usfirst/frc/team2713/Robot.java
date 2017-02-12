@@ -75,8 +75,8 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putData("OI Mode", RobotMap.OIDriveMode);
 
 		RobotMap.startingPosition.addDefault("Position 1 (left)", 1);
-		RobotMap.startingPosition.addObject("Position 2 (middle)", 2);
-		RobotMap.startingPosition.addObject("Position 3 (right)", 3);
+		RobotMap.startingPosition.addObject("Position 3 (right)", 3); // Out of order in order
+		RobotMap.startingPosition.addObject("Position 2 (middle)", 2); // to keep order on dashboard.
 		SmartDashboard.putData("Starting Position", RobotMap.startingPosition);
 	}
 
