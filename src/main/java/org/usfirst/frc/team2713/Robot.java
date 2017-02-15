@@ -26,11 +26,9 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void robotInit() {
 		robotInstance = this;
-
-		initSubsystems();
-
 		oi = new OI();
-
+		
+		initSubsystems();
 		initCamera();
 		initDash();
 	}
