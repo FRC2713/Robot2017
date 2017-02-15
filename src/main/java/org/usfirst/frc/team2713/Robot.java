@@ -53,9 +53,9 @@ public class Robot extends IterativeRobot {
 	public void teleopInit() {
 		if (autonomousCommand != null) autonomousCommand.cancel();
 		drive.startTeleop();
-		climb.startClimb();
-		gate.startGate();
-		highGoal.startHighGoal();
+		climb.initClimb();
+		gate.initGate();
+		highGoal.initHighGoal();
 	}
 
 	private void initSubsystems() {

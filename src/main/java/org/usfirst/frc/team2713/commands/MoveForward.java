@@ -8,7 +8,11 @@ import org.usfirst.frc.team2713.RobotMap;
 public class MoveForward extends Command {
 	private Robot robot = Robot.getRobot();
 	private double distance;
-
+	
+	/**
+	 * Moves the robot forward
+	 * @param distance Distance in inches
+	 */
 	public MoveForward(double distance) {
 		requires(robot.getDrive());
 		this.distance = distance;

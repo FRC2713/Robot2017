@@ -8,13 +8,11 @@ public class ClimbCommand extends Command {
 	private ClimbSubsystem climbSubsystem;
 	private CANTalon motor;
 	private double speed;
-	private boolean isOI;
 	
-	public ClimbCommand(ClimbSubsystem climbSubsystem, double speed, boolean isOI) {
+	public ClimbCommand(ClimbSubsystem climbSubsystem, double speed) {
 		this.climbSubsystem = climbSubsystem;
 		this.motor = climbSubsystem.climbMotor;
 		this.speed = speed;
-		this.isOI = isOI;
 		requires(climbSubsystem);
 	}
 	
@@ -30,6 +28,6 @@ public class ClimbCommand extends Command {
 	
 	@Override
 	protected boolean isFinished() {
-		return !(isOI && climbSubsystem.isButtonPressed());
+		return false;
 	}
 }
