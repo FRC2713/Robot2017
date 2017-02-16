@@ -22,10 +22,10 @@ public class ClimbSubsystem extends Subsystem {
 		JoystickButton upSlow = new JoystickButton(fight, 7);
 		JoystickButton downSlow = new JoystickButton(fight, 3);
 		
-		upFast.whenPressed(new ClimbCommand(this, fastSpeed));
-		downFast.whenPressed(new ClimbCommand(this, -fastSpeed));
-		upSlow.whenPressed(new ClimbCommand(this, slowSpeed));
-		downSlow.whenPressed(new ClimbCommand(this, -slowSpeed));
+		upFast.whileActive(new ClimbCommand(this, fastSpeed));
+		downFast.whileActive(new ClimbCommand(this, -fastSpeed));
+		upSlow.whileActive(new ClimbCommand(this, slowSpeed));
+		downSlow.whileActive(new ClimbCommand(this, -slowSpeed));
 	}
 	
 	@Override
