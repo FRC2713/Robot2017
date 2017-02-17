@@ -12,7 +12,7 @@ public class GateSubsystem extends Subsystem {
 	public Servo lowServo = new Servo(RobotMap.LOW_GATE_SERVO);
 	public Servo highServo = new Servo(RobotMap.HIGH_GATE_SERVO);
 
-	private int openDegree = 108;
+	private int openDegree = 90;
 	private int closedDegree = 0;
 
 	public void initGate() {

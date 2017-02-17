@@ -13,7 +13,7 @@ public class HighGoalSubsystem extends Subsystem {
 	public CANTalon kicker = new CANTalon(RobotMap.HIGH_GOAL_KICKER);
 
 	public void initHighGoal() {
-		JoystickButton button = new JoystickButton(Robot.getOI().getController(OI.ControllerType.xbox), 4);
+		JoystickButton button = new JoystickButton(Robot.getOI().getController(OI.ControllerType.xbox), 4); // Y Button
 		
 		button.whenPressed(new HighGoalCommand(this));
 	}
