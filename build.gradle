@@ -16,6 +16,10 @@ def robotManifest = {
 	attributes 'Robot-Class': frc.robotClass
 }
 
+repositories {
+	mavenCentral()
+}
+
 dependencies {
 	compile wpilib()
 	compile talonSrx()
