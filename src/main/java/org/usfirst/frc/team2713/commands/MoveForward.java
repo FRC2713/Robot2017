@@ -1,6 +1,7 @@
 package org.usfirst.frc.team2713.commands;
 
 import com.ctre.CANTalon;
+import edu.wpi.first.wpilibj.PIDSourceType;
 import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc.team2713.Robot;
 import org.usfirst.frc.team2713.RobotMap;
@@ -27,10 +28,18 @@ public class MoveForward extends Command {
 		leftTalon.set(RobotMap.TOP_RIGHT);
 
 		CANTalon rightTalon = robot.getDrive().getRightTalon();
-		rightTalon.setPID(0.1, 0, 0); // TODO: Tune PID
+		rightTalon.configMaxOutputVoltage(12D);
 		rightTalon.changeControlMode(CANTalon.TalonControlMode.Position);
-		rightTalon.configMaxOutputVoltage(3D);
-		rightTalon.setSetpoint(distance);
+		rightTalon.setPIDSourceType(PIDSourceType.kDisplacement);
+		rightTalon.setPID(0.1, 0, 0); // TODO: Tune PID
+		rightTalon.setSetpoint(distance / RobotMap.WHEEL_CIRCUMFERENCE);
+	}
+
+	@Override
+	protected void execute() {
+		System.out.printf("Pos: %d, Err %f%n",
+				robot.getDrive().getRightTalon().getEncPosition(),
+				robot.getDrive().getRightTalon().getError());
 	}
 
 	@Override
@@ -47,6 +56,6 @@ public class MoveForward extends Command {
 
 	@Override
 	protected boolean isFinished() {
-		return robot.getDrive().getRightTalon().getError() < 0.5D;
+		return Math.abs(robot.getDrive().getRightTalon().getError()) < 5D;
 	}
 }

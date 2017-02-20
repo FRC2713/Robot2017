@@ -11,12 +11,14 @@ public class Turn extends Command {
 
 	private PIDController pid;
 	private double angle;
+	private double tolerance;
 
-	public Turn(double angle) {
+	public Turn(double angle, double tolerance) {
 		requires(robot.getDrive());
 
 		angle %= 360D;
 		this.angle = angle;
+		this.tolerance = tolerance;
 	}
 
 	@Override
@@ -24,7 +26,7 @@ public class Turn extends Command {
 		TalonOutput output = new TalonOutput(robot.getDrive().getLeftTalon(), robot.getDrive().getRightTalon());
 		pid = new PIDController(0.1, 0, 0, robot.getDrive().getGyro(), output); // TODO: Tune PID
 		pid.setOutputRange(-0.25D, 0.25D);
-		pid.setAbsoluteTolerance(2D);
+		pid.setAbsoluteTolerance(tolerance);
 
 		pid.setSetpoint(robot.getDrive().getGyro().getAngle() + angle);
 		pid.enable();
@@ -52,7 +54,7 @@ public class Turn extends Command {
 		@Override
 		public void pidWrite(double output) {
 			left.pidWrite(output);
-			right.pidWrite(output);
+			right.pidWrite(-output);
 		}
 	}
 }

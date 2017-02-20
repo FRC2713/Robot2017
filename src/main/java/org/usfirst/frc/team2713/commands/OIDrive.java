@@ -9,16 +9,14 @@ import org.usfirst.frc.team2713.RobotMap;
 import org.usfirst.frc.team2713.subsystems.DriveSubsystem;
 
 public class OIDrive extends Command {
-	private RobotDrive roboDrive;
 	DriveSubsystem drive;
 	XboxController xbox = Robot.getOI().getController();
 	private double scaler = 1.0;
 	private double deadband = 0.1;
 	private double polarity = -1;
 
-	public OIDrive(DriveSubsystem drive, RobotDrive roboDrive) {
+	public OIDrive(DriveSubsystem drive) {
 		this.drive = drive;
-		this.roboDrive = roboDrive;
 		requires(drive);
 	}
 

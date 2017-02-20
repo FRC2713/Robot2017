@@ -25,12 +25,13 @@ public class DriveSubsystem extends Subsystem {
 		bottomLeft.changeControlMode(CANTalon.TalonControlMode.Follower);
 		bottomLeft.set(RobotMap.TOP_LEFT);
 
+		topRight.reverseOutput(true);
+
 		bottomRight.changeControlMode(CANTalon.TalonControlMode.Follower);
 		bottomRight.set(RobotMap.TOP_RIGHT);
+		bottomRight.reverseOutput(true);
 
 		resetEncoders();
-
-		roboDrive = new RobotDrive(topLeft, topRight);
 	}
 
 	@Override
@@ -39,7 +40,9 @@ public class DriveSubsystem extends Subsystem {
 	}
 
 	public void startTeleop() {
-		new OIDrive(this, roboDrive).start();
+		roboDrive = new RobotDrive(topLeft, topRight);
+		roboDrive.setInvertedMotor(RobotDrive.MotorType.kRearRight, true); // This is actually the front.
+		new OIDrive(this).start();
 	}
 
 	public void tankDrive(double left, double right, double deadband, boolean checkReverseButton) {
