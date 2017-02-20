@@ -10,12 +10,12 @@ public class AutonomousCommand extends CommandGroup {
 			case 1:
 				addSequential(new Turn(60D, 2D));
 				addSequential(new VisionAlign());
-				addSequential(new MoveForward(57.8D));
+				addSequential(new VisionMoveForward());
 				break;
 			case 3:
 				addSequential(new Turn(-60D, 2D));
 				addSequential(new VisionAlign());
-				addSequential(new MoveForward(57.8D));
+				addSequential(new VisionMoveForward());
 				break;
 		}
 	}

@@ -33,6 +33,7 @@ public class VisionAlign extends Command {
 				break;
 			case 2: // Angle found.
 				double correctionAngle = table.getNumber("correctionAngle", 0);
+				table.putNumber("status", 0);
 
 				if (Math.abs(correctionAngle) <= 0.1) {
 					withinThreshold = true;
@@ -41,7 +42,6 @@ public class VisionAlign extends Command {
 
 				turnCommand = new Turn(correctionAngle, 0.1);
 				turnCommand.start();
-				table.putNumber("status", 0);
 				break;
 		}
 	}
