@@ -59,6 +59,21 @@ public class MoveForward extends Command {
 
 		robot.getDrive().getBottomRightTalon().reverseOutput(false);
 	}
+	
+	@Override
+	protected void interrupted() {
+		CANTalon leftTalon = robot.getDrive().getLeftTalon();
+		leftTalon.changeControlMode(CANTalon.TalonControlMode.PercentVbus);
+		leftTalon.set(0);
+
+		CANTalon rightTalon = robot.getDrive().getRightTalon();
+		rightTalon.reverseOutput(false);
+		rightTalon.changeControlMode(CANTalon.TalonControlMode.PercentVbus);
+		rightTalon.configMaxOutputVoltage(12D);
+		rightTalon.set(0);
+
+		robot.getDrive().getBottomRightTalon().reverseOutput(false);
+	}
 
 	@Override
 	protected boolean isFinished() {
