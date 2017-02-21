@@ -2,10 +2,8 @@ package org.usfirst.frc.team2713.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.networktables.NetworkTable;
-import org.usfirst.frc.team2713.Robot;
 
 public class VisionAlign extends Command {
-	private Robot robot = Robot.getRobot();
 	private NetworkTable table;
 	private boolean withinThreshold;
 
@@ -28,10 +26,10 @@ public class VisionAlign extends Command {
 		}
 
 		switch ((int) table.getNumber("status", 1)) {
-			case 0: // Doing nothing.
+			case 0: // Doing nothing
 				table.putNumber("status", 1); // Request angle
 				break;
-			case 2: // Angle found.
+			case 2: // Angle found
 				double correctionAngle = table.getNumber("correctionAngle", 0);
 				table.putNumber("status", 0);
 

@@ -1,7 +1,9 @@
 package org.usfirst.frc.team2713.subsystems;
 
 import com.ctre.CANTalon;
-import edu.wpi.first.wpilibj.*;
+import edu.wpi.first.wpilibj.ADXRS450_Gyro;
+import edu.wpi.first.wpilibj.GenericHID;
+import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import org.usfirst.frc.team2713.Robot;
 import org.usfirst.frc.team2713.RobotMap;
@@ -24,12 +26,9 @@ public class DriveSubsystem extends Subsystem {
 	public DriveSubsystem() {
 		bottomLeft.changeControlMode(CANTalon.TalonControlMode.Follower);
 		bottomLeft.set(RobotMap.TOP_LEFT);
-
-		topRight.reverseOutput(true);
-
+		
 		bottomRight.changeControlMode(CANTalon.TalonControlMode.Follower);
 		bottomRight.set(RobotMap.TOP_RIGHT);
-		bottomRight.reverseOutput(true);
 
 		resetEncoders();
 	}
@@ -41,7 +40,7 @@ public class DriveSubsystem extends Subsystem {
 
 	public void startTeleop() {
 		roboDrive = new RobotDrive(topLeft, topRight);
-		roboDrive.setInvertedMotor(RobotDrive.MotorType.kRearRight, true); // This is actually the front.
+		//roboDrive.setInvertedMotor(RobotDrive.MotorType.kRearRight, true); // This is actually the front.
 		new OIDrive(this).start();
 	}
 
