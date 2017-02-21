@@ -40,7 +40,6 @@ public class DriveSubsystem extends Subsystem {
 
 	public void startTeleop() {
 		roboDrive = new RobotDrive(topLeft, topRight);
-		//roboDrive.setInvertedMotor(RobotDrive.MotorType.kRearRight, true); // This is actually the front.
 		new OIDrive(this).start();
 	}
 

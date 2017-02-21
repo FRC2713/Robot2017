@@ -1,7 +1,6 @@
 package org.usfirst.frc.team2713.commands;
 
 import edu.wpi.first.wpilibj.GenericHID.Hand;
-import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc.team2713.Robot;
@@ -18,10 +17,6 @@ public class OIDrive extends Command {
 	public OIDrive(DriveSubsystem drive) {
 		this.drive = drive;
 		requires(drive);
-	}
-
-	@Override
-	protected void initialize() {
 	}
 
 	@Override
@@ -57,13 +52,5 @@ public class OIDrive extends Command {
 	@Override
 	protected boolean isFinished() {
 		return false;
-	}
-
-	@Override
-	protected void end() {
-	}
-
-	@Override
-	protected void interrupted() {
 	}
 }
