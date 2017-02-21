@@ -76,6 +76,8 @@ public class Robot extends IterativeRobot {
 		RobotMap.startingPosition.addObject("Position 3 (right)", 3); // Out of order in order
 		RobotMap.startingPosition.addObject("Position 2 (middle)", 2); // to keep order on dashboard.
 		SmartDashboard.putData("Starting Position", RobotMap.startingPosition);
+		
+		SmartDashboard.putNumber("Launcher Speed", 0.90D);
 	}
 
 	private void initCamera() {

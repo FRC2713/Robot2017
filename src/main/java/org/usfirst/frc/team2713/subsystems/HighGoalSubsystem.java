@@ -16,7 +16,7 @@ public class HighGoalSubsystem extends Subsystem {
 		JoystickButton launcher = new JoystickButton(Robot.getOI().getController(OI.ControllerType.xbox), 4); // Y Button
 		JoystickButton vibration = new JoystickButton(Robot.getOI().getController(OI.ControllerType.xbox), 3); // X Button
 		
-		launcher.toggleWhenPressed(new MoveMotor(kicker, 1.0D));
+		launcher.toggleWhenPressed(new MoveMotor(kicker, "Launcher Speed"));
 		vibration.toggleWhenPressed(new MoveMotor(vibrator, 0.25D));
 	}
 

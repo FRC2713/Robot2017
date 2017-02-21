@@ -8,7 +8,7 @@ public class RobotMap {
 	public static SendableChooser<Enum> OIDriveMode = new SendableChooser<>();
 	public static SendableChooser<Integer> startingPosition = new SendableChooser<>();
 
-	// Robot parts
+	// Robot Parts
 	public static final double WHEEL_CIRCUMFERENCE = 18.8496D;
 
 	// Controller Ports
