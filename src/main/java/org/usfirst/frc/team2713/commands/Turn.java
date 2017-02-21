@@ -54,7 +54,7 @@ public class Turn extends Command {
 		@Override
 		public void pidWrite(double output) {
 			left.pidWrite(output);
-			right.pidWrite(-output);
+			right.pidWrite(output);
 		}
 	}
 }

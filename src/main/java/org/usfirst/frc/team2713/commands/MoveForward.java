@@ -9,7 +9,7 @@ import org.usfirst.frc.team2713.RobotMap;
 public class MoveForward extends Command {
 	private Robot robot = Robot.getRobot();
 	private double distance;
-	
+
 	/**
 	 * Moves the robot forward
 	 * @param distance Distance in inches
@@ -29,10 +29,13 @@ public class MoveForward extends Command {
 
 		CANTalon rightTalon = robot.getDrive().getRightTalon();
 		rightTalon.configMaxOutputVoltage(12D);
+		rightTalon.reverseOutput(true);
 		rightTalon.changeControlMode(CANTalon.TalonControlMode.Position);
 		rightTalon.setPIDSourceType(PIDSourceType.kDisplacement);
 		rightTalon.setPID(0.1, 0, 0); // TODO: Tune PID
 		rightTalon.setSetpoint(distance / RobotMap.WHEEL_CIRCUMFERENCE);
+
+		robot.getDrive().getBottomRightTalon().reverseOutput(true);
 	}
 
 	@Override
@@ -49,9 +52,12 @@ public class MoveForward extends Command {
 		leftTalon.set(0);
 
 		CANTalon rightTalon = robot.getDrive().getRightTalon();
+		rightTalon.reverseOutput(false);
 		rightTalon.changeControlMode(CANTalon.TalonControlMode.PercentVbus);
 		rightTalon.configMaxOutputVoltage(12D);
 		rightTalon.set(0);
+
+		robot.getDrive().getBottomRightTalon().reverseOutput(false);
 	}
 
 	@Override

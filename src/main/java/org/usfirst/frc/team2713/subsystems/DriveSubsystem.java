@@ -26,7 +26,7 @@ public class DriveSubsystem extends Subsystem {
 	public DriveSubsystem() {
 		bottomLeft.changeControlMode(CANTalon.TalonControlMode.Follower);
 		bottomLeft.set(RobotMap.TOP_LEFT);
-		
+
 		bottomRight.changeControlMode(CANTalon.TalonControlMode.Follower);
 		bottomRight.set(RobotMap.TOP_RIGHT);
 
@@ -111,6 +111,10 @@ public class DriveSubsystem extends Subsystem {
 
 	public CANTalon getRightTalon() {
 		return topRight;
+	}
+
+	public CANTalon getBottomRightTalon() {
+		return bottomRight;
 	}
 
 	public ADXRS450_Gyro getGyro() {
