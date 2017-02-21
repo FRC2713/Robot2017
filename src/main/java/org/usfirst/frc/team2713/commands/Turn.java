@@ -31,11 +31,6 @@ public class Turn extends Command {
 		pid.setSetpoint(robot.getDrive().getGyro().getAngle() + angle);
 		pid.enable();
 	}
-	
-	@Override
-	protected void interrupted() {
-		pid.disable();
-	}
 
 	@Override
 	protected void end() {

@@ -22,11 +22,6 @@ public class ClimbCommand extends Command {
 	}
 	
 	@Override
-	protected void interrupted() {
-		motor.set(0);
-	}
-	
-	@Override
 	protected void end() {
 		motor.set(0);
 	}
