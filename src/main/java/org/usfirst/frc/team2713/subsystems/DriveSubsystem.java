@@ -100,8 +100,8 @@ public class DriveSubsystem extends Subsystem {
 		topLeft.setEncPosition(0);
 		topRight.setEncPosition(0);
 
-		topLeft.configEncoderCodesPerRev(1440); // As per https://tinyurl.com/jt5u24u
-		topRight.configEncoderCodesPerRev(1440);
+		topLeft.configEncoderCodesPerRev(360); // As per https://tinyurl.com/jt5u24u
+		topRight.configEncoderCodesPerRev(360);
 	}
 
 	public CANTalon getLeftTalon() {

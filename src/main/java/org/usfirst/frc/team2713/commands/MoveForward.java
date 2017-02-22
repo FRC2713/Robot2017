@@ -12,6 +12,9 @@ public class MoveForward extends Command {
 
 	/**
 	 * Moves the robot forward
+	 *
+	 * Assumes that forward is towards the gear-side.
+	 *
 	 * @param distance Distance in inches
 	 */
 	public MoveForward(double distance) {
@@ -26,16 +29,15 @@ public class MoveForward extends Command {
 		CANTalon leftTalon = robot.getDrive().getLeftTalon();
 		leftTalon.changeControlMode(CANTalon.TalonControlMode.Follower);
 		leftTalon.set(RobotMap.TOP_RIGHT);
+		leftTalon.reverseOutput(true);
 
 		CANTalon rightTalon = robot.getDrive().getRightTalon();
 		rightTalon.configMaxOutputVoltage(12D);
-		rightTalon.reverseOutput(true);
+		rightTalon.reverseSensor(true);
 		rightTalon.changeControlMode(CANTalon.TalonControlMode.Position);
 		rightTalon.setPIDSourceType(PIDSourceType.kDisplacement);
 		rightTalon.setPID(0.1, 0, 0); // TODO: Tune PID
 		rightTalon.setSetpoint(distance / RobotMap.WHEEL_CIRCUMFERENCE);
-
-		robot.getDrive().getBottomRightTalon().reverseOutput(true);
 	}
 
 	@Override
@@ -48,16 +50,14 @@ public class MoveForward extends Command {
 	@Override
 	protected void end() {
 		CANTalon leftTalon = robot.getDrive().getLeftTalon();
+		leftTalon.reverseOutput(false);
 		leftTalon.changeControlMode(CANTalon.TalonControlMode.PercentVbus);
 		leftTalon.set(0);
 
 		CANTalon rightTalon = robot.getDrive().getRightTalon();
-		rightTalon.reverseOutput(false);
 		rightTalon.changeControlMode(CANTalon.TalonControlMode.PercentVbus);
 		rightTalon.configMaxOutputVoltage(12D);
 		rightTalon.set(0);
-
-		robot.getDrive().getBottomRightTalon().reverseOutput(false);
 	}
 
 	@Override
