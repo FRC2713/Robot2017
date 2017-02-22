@@ -21,7 +21,9 @@ public class MoveMotor extends Command {
 	
 	@Override
 	protected void execute() {
-		speed = SmartDashboard.getNumber(smartKey, 0D);
+		if (smartKey != null) {
+			speed = SmartDashboard.getNumber(smartKey, 0D);
+		}
 		motor.set(speed);
 	}
 	
