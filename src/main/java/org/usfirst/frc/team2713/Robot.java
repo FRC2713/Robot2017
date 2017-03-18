@@ -27,7 +27,7 @@ public class Robot extends IterativeRobot {
 	public void robotInit() {
 		robotInstance = this;
 		oi = new OI();
-		
+
 		initSubsystems();
 		initCamera();
 		initDash();
@@ -66,9 +66,9 @@ public class Robot extends IterativeRobot {
 	}
 
 	private void initDash() {
-		RobotMap.OIDriveMode.addDefault("Tank Drive", DriveSubsystem.DriveModes.tank);
+		RobotMap.OIDriveMode.addDefault("Therian Drive", DriveSubsystem.DriveModes.therian);
+		RobotMap.OIDriveMode.addObject("Tank Drive", DriveSubsystem.DriveModes.tank);
 		RobotMap.OIDriveMode.addObject("Arcade Drive", DriveSubsystem.DriveModes.arcade);
-		RobotMap.OIDriveMode.addObject("Therian Drive", DriveSubsystem.DriveModes.therian);
 		RobotMap.OIDriveMode.addObject("Rocket League", DriveSubsystem.DriveModes.rocketleague);
 		SmartDashboard.putData("OI Mode", RobotMap.OIDriveMode);
 
@@ -76,8 +76,8 @@ public class Robot extends IterativeRobot {
 		RobotMap.startingPosition.addObject("Position 3 (right)", 3); // Out of order in order
 		RobotMap.startingPosition.addObject("Position 2 (middle)", 2); // to keep order on dashboard.
 		SmartDashboard.putData("Starting Position", RobotMap.startingPosition);
-		
-		SmartDashboard.putNumber("Launcher Speed", 0.90D);
+
+		SmartDashboard.putNumber("Launcher Speed", 0.67D);
 	}
 
 	private void initCamera() {

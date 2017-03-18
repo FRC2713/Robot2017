@@ -13,11 +13,14 @@ public class HighGoalSubsystem extends Subsystem {
 	private CANTalon vibrator = new CANTalon(RobotMap.HIGH_GOAL_VIBRATOR);
 
 	public void initHighGoal() {
+		kicker.setInverted(true);
 		JoystickButton launcher = new JoystickButton(Robot.getOI().getController(OI.ControllerType.xbox), 4); // Y Button
 		JoystickButton vibration = new JoystickButton(Robot.getOI().getController(OI.ControllerType.xbox), 3); // X Button
-		
-		launcher.toggleWhenPressed(new MoveMotor(kicker, "Launcher Speed"));
+		JoystickButton backwardLauncher = new JoystickButton(Robot.getOI().getController(OI.ControllerType.xbox), 1); // A Button
+
+		launcher.toggleWhenPressed(new MoveMotor(kicker, "Launcher Speed", false));
 		vibration.toggleWhenPressed(new MoveMotor(vibrator, 0.25D));
+		backwardLauncher.toggleWhenPressed(new MoveMotor(kicker, "Launcher Speed", true));
 	}
 
 	@Override

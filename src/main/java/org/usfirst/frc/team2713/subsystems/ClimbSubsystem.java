@@ -14,20 +14,19 @@ public class ClimbSubsystem extends Subsystem {
 	private XboxController fight = Robot.getOI().getController(OI.ControllerType.fight);
 	private double fastSpeed = 1;
 	private double slowSpeed = .5;
-	
-	
+
 	public void initClimb() {
 		JoystickButton upFast = new JoystickButton(fight, 8); // Climb Up Fast
 		JoystickButton downFast = new JoystickButton(fight, 4); // Climb Down Fast
 		JoystickButton upSlow = new JoystickButton(fight, 7);
 		JoystickButton downSlow = new JoystickButton(fight, 3);
-		
+
 		upFast.whileActive(new ClimbCommand(this, fastSpeed));
 		downFast.whileActive(new ClimbCommand(this, -fastSpeed));
 		upSlow.whileActive(new ClimbCommand(this, slowSpeed));
 		downSlow.whileActive(new ClimbCommand(this, -slowSpeed));
 	}
-	
+
 	@Override
 	protected void initDefaultCommand() {
 	}

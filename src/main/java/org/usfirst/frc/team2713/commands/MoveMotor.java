@@ -8,30 +8,33 @@ public class MoveMotor extends Command {
 	private CANTalon motor;
 	private double speed;
 	private String smartKey;
-	
+	private boolean negate;
+
 	public MoveMotor(CANTalon talon, double speed){
 		this.motor = talon;
 		this.speed = speed;
+		this.negate = false;
 	}
-	
-	public MoveMotor(CANTalon talon, String smartKey){
+
+	public MoveMotor(CANTalon talon, String smartKey, boolean negate){
 		this.motor = talon;
 		this.smartKey = smartKey;
+		this.negate = negate;
 	}
-	
+
 	@Override
 	protected void execute() {
 		if (smartKey != null) {
-			speed = SmartDashboard.getNumber(smartKey, 0D);
+			speed = (negate ? -1 : 1) * SmartDashboard.getNumber(smartKey, 0D);
 		}
 		motor.set(speed);
 	}
-	
+
 	@Override
 	protected void end() {
 		motor.set(0);
 	}
-	
+
 	@Override
 	protected boolean isFinished() {
 		return false;
