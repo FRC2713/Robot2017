@@ -41,7 +41,8 @@ public class Robot extends IterativeRobot {
 
 	@Override
 	public void autonomousInit() {
-		autonomousCommand = new AutonomousCommand(RobotMap.startingPosition.getSelected());
+		autonomousCommand = new AutonomousCommand(RobotMap.startingPosition.getSelected(),
+				RobotMap.autonomousActivation.getSelected());
 		autonomousCommand.start();
 	}
 
