@@ -35,6 +35,7 @@ public class Robot extends IterativeRobot {
 
 	@Override
 	public void disabledInit() {
+		Scheduler.getInstance().removeAll();
 		drive.resetEncoders();
 	}
 
@@ -71,6 +72,10 @@ public class Robot extends IterativeRobot {
 		RobotMap.OIDriveMode.addObject("Arcade Drive", DriveSubsystem.DriveModes.arcade);
 		RobotMap.OIDriveMode.addObject("Rocket League", DriveSubsystem.DriveModes.rocketleague);
 		SmartDashboard.putData("OI Mode", RobotMap.OIDriveMode);
+
+		RobotMap.autonomousActivation.addDefault("Do something", true);
+		RobotMap.autonomousActivation.addObject("Do nothing", false);
+		SmartDashboard.putData("Autonomous Activation", RobotMap.autonomousActivation);
 
 		RobotMap.startingPosition.addDefault("Position 1 (left)", 1);
 		RobotMap.startingPosition.addObject("Position 3 (right)", 3); // Out of order in order

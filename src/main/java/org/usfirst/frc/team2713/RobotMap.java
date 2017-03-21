@@ -6,6 +6,7 @@ public class RobotMap {
 	// User Configurable Settings
 	public static final boolean DEBUG = false;
 	public static SendableChooser<Enum> OIDriveMode = new SendableChooser<>();
+	public static SendableChooser<Boolean> autonomousActivation = new SendableChooser<>();
 	public static SendableChooser<Integer> startingPosition = new SendableChooser<>();
 
 	// Robot Parts
