@@ -19,7 +19,7 @@ public class HighGoalSubsystem extends Subsystem {
 		JoystickButton backwardLauncher = new JoystickButton(Robot.getOI().getController(OI.ControllerType.xbox), 1); // A Button
 
 		launcher.toggleWhenPressed(new MoveMotor(kicker, "Launcher Speed", false));
-		vibration.toggleWhenPressed(new MoveMotor(vibrator, 0.25D));
+		vibration.toggleWhenPressed(new MoveMotor(vibrator, 0.1D));
 		backwardLauncher.toggleWhenPressed(new MoveMotor(kicker, "Launcher Speed", true));
 	}
 
