@@ -1,13 +1,14 @@
 package org.usfirst.frc.team2713.subsystems;
 
 import com.ctre.CANTalon;
-import edu.wpi.first.wpilibj.ADXRS450_Gyro;
-import edu.wpi.first.wpilibj.GenericHID;
-import edu.wpi.first.wpilibj.RobotDrive;
+import edu.wpi.first.wpilibj.*;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import org.usfirst.frc.team2713.OI;
 import org.usfirst.frc.team2713.Robot;
 import org.usfirst.frc.team2713.RobotMap;
 import org.usfirst.frc.team2713.commands.OIDrive;
+import org.usfirst.frc.team2713.commands.VisionAlign;
 
 public class DriveSubsystem extends Subsystem {
 	private CANTalon topLeft = new CANTalon(RobotMap.TOP_LEFT); // Has an e4p360250 encoder
@@ -29,6 +30,12 @@ public class DriveSubsystem extends Subsystem {
 
 		bottomRight.changeControlMode(CANTalon.TalonControlMode.Follower);
 		bottomRight.set(RobotMap.TOP_RIGHT);
+
+		JoystickButton driveStart = new JoystickButton(Robot.getOI().getController(OI.ControllerType.xbox), 4); // LB
+		JoystickButton visionAlign = new JoystickButton(Robot.getOI().getController(OI.ControllerType.xbox), 4); // RB
+
+		driveStart.whenPressed(new OIDrive(this));
+		visionAlign.whenPressed(new VisionAlign());
 
 		resetEncoders();
 	}
@@ -118,6 +125,33 @@ public class DriveSubsystem extends Subsystem {
 
 	public ADXRS450_Gyro getGyro() {
 		return gyro;
+	}
+
+	public PIDController createGyroPidController(double tolerance) {
+		PIDController pid;
+
+		TalonOutput output = new TalonOutput(getLeftTalon(), getRightTalon());
+		pid = new PIDController(0.1, 0, 0, getGyro(), output); // TODO: Tune PID
+		pid.setOutputRange(-0.25D, 0.25D);
+		pid.setAbsoluteTolerance(tolerance);
+
+		return pid;
+	}
+
+	class TalonOutput implements PIDOutput {
+		private CANTalon left;
+		private CANTalon right;
+
+		private TalonOutput(CANTalon left, CANTalon right) {
+			this.left = left;
+			this.right = right;
+		}
+
+		@Override
+		public void pidWrite(double output) {
+			left.pidWrite(output);
+			right.pidWrite(output);
+		}
 	}
 
 	public enum DriveModes {
