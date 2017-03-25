@@ -6,7 +6,7 @@ import org.usfirst.frc.team2713.Robot;
 public class AutonomousCommand extends CommandGroup {
 	public AutonomousCommand(int startingPosition, boolean active) {
 		if (active) {
-			/*addSequential(new MoveForward(103D));
+			addSequential(new MoveForward(103D));
 
 			switch (startingPosition) {
 				case 1:
@@ -19,8 +19,7 @@ public class AutonomousCommand extends CommandGroup {
 					addSequential(new VisionAlign(Robot.getRobot().getDrive()));
 					addSequential(new VisionMoveForward());
 					break;
-			}*/
-			addSequential(new MoveForward(7*18.8496D));
+			}
 		}
 	}
 }
