@@ -5,6 +5,7 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.networktables.NetworkTable;
 import org.usfirst.frc.team2713.Robot;
 import org.usfirst.frc.team2713.RobotMap;
+import org.usfirst.frc.team2713.subsystems.DriveSubsystem;
 
 public class VisionAlign extends Command {
 	private NetworkTable table;
@@ -12,14 +13,15 @@ public class VisionAlign extends Command {
 
 	private PIDController pid;
 
-	public VisionAlign() {
-		requires(Robot.getRobot().getDrive());
+	public VisionAlign(DriveSubsystem drive) {
+		requires(drive);
 		table = NetworkTable.getTable("VisionProcessing");
 	}
 
 	@Override
 	protected void initialize() {
 		pid = Robot.getRobot().getDrive().createGyroPidController(RobotMap.VISION_ANGLE_TOLERANCE);
+		withinThreshold = false;
 	}
 
 	@Override
@@ -36,22 +38,26 @@ public class VisionAlign extends Command {
 
 	@Override
 	protected void execute() {
-		switch ((int) table.getNumber("status", 1)) {
-			case 0: // Doing nothing
-				table.putNumber("status", 1); // Request angle
-				break;
-			case 2: // Angle found
-				double correctionAngle = table.getNumber("correctionAngle", 0);
-				table.putNumber("status", 0);
+		//System.out.println("Current angle: " + Robot.getRobot().getDrive().getGyro().getAngle());
+		if (!pid.isEnabled()) {
+			switch ((int) table.getNumber("status", 1)) {
+				case 0: // Doing nothing
+					table.putNumber("status", 1); // Request angle
+					break;
+				case 2: // Angle found
+					double correctionAngle = table.getNumber("correctionAngle", 0);
+					table.putNumber("status", 0);
 
-				if (Math.abs(correctionAngle) <= RobotMap.VISION_ANGLE_TOLERANCE) {
-					withinThreshold = true;
-					return;
-				}
+					if (Math.abs(correctionAngle) <= RobotMap.VISION_ANGLE_TOLERANCE) {
+						withinThreshold = true;
+						return;
+					}
 
-				pid.setSetpoint(Robot.getRobot().getDrive().getGyro().getAngle() + correctionAngle);
-				pid.enable();
-				break;
+					pid.setSetpoint(Robot.getRobot().getDrive().getGyro().getAngle() + correctionAngle);
+					System.out.println("Goal: " + (Robot.getRobot().getDrive().getGyro().getAngle() + correctionAngle) + " (correction " + correctionAngle + ")");
+					pid.enable();
+					break;
+			}
 		}
 	}
 

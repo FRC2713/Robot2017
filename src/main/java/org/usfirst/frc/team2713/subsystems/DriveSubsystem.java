@@ -8,6 +8,7 @@ import org.usfirst.frc.team2713.OI;
 import org.usfirst.frc.team2713.Robot;
 import org.usfirst.frc.team2713.RobotMap;
 import org.usfirst.frc.team2713.commands.OIDrive;
+import org.usfirst.frc.team2713.commands.Turn;
 import org.usfirst.frc.team2713.commands.VisionAlign;
 
 public class DriveSubsystem extends Subsystem {
@@ -15,7 +16,7 @@ public class DriveSubsystem extends Subsystem {
 	private CANTalon topRight = new CANTalon(RobotMap.TOP_RIGHT); // And me!
 	private CANTalon bottomLeft = new CANTalon(RobotMap.BOTTOM_LEFT);
 	private CANTalon bottomRight = new CANTalon(RobotMap.BOTTOM_RIGHT);
-	private RobotDrive roboDrive;
+	public RobotDrive roboDrive;
 
 	private ADXRS450_Gyro gyro = new ADXRS450_Gyro();
 
@@ -31,11 +32,11 @@ public class DriveSubsystem extends Subsystem {
 		bottomRight.changeControlMode(CANTalon.TalonControlMode.Follower);
 		bottomRight.set(RobotMap.TOP_RIGHT);
 
-		JoystickButton driveStart = new JoystickButton(Robot.getOI().getController(OI.ControllerType.xbox), 4); // LB
-		JoystickButton visionAlign = new JoystickButton(Robot.getOI().getController(OI.ControllerType.xbox), 4); // RB
+		JoystickButton driveStart = new JoystickButton(Robot.getOI().getController(OI.ControllerType.xbox), 5); // LB
+		JoystickButton visionAlign = new JoystickButton(Robot.getOI().getController(OI.ControllerType.xbox), 6); // RB
 
 		driveStart.whenPressed(new OIDrive(this));
-		visionAlign.whenPressed(new VisionAlign());
+		visionAlign.whenPressed(new VisionAlign(this));
 
 		resetEncoders();
 	}
@@ -107,8 +108,8 @@ public class DriveSubsystem extends Subsystem {
 		topLeft.setEncPosition(0);
 		topRight.setEncPosition(0);
 
-		topLeft.configEncoderCodesPerRev(1440); // As per https://tinyurl.com/jt5u24u
-		topRight.configEncoderCodesPerRev(1440);
+		topLeft.configEncoderCodesPerRev(360); // As per https://tinyurl.com/jt5u24u
+		topRight.configEncoderCodesPerRev(360);
 	}
 
 	public CANTalon getLeftTalon() {
@@ -131,7 +132,7 @@ public class DriveSubsystem extends Subsystem {
 		PIDController pid;
 
 		TalonOutput output = new TalonOutput(getLeftTalon(), getRightTalon());
-		pid = new PIDController(0.1, 0, 0, getGyro(), output); // TODO: Tune PID
+		pid = new PIDController(0.025, 0, 0, getGyro(), output); // TODO: Tune PID
 		pid.setOutputRange(-0.25D, 0.25D);
 		pid.setAbsoluteTolerance(tolerance);
 

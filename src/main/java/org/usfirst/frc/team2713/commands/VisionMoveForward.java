@@ -20,7 +20,7 @@ public class VisionMoveForward extends Command {
 
 	@Override
 	protected void initialize() {
-		moveCommand = new MoveForward(table.getNumber("approxDistance", 0));
+		moveCommand = new MoveForward(-table.getNumber("approxDistance", 0));
 		moveCommand.start();
 	}
 

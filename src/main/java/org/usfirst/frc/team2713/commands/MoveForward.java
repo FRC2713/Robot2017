@@ -32,11 +32,11 @@ public class MoveForward extends Command {
 		leftTalon.reverseOutput(true);
 
 		CANTalon rightTalon = robot.getDrive().getRightTalon();
-		rightTalon.configMaxOutputVoltage(12D);
+		rightTalon.configMaxOutputVoltage(3D);
 		rightTalon.reverseSensor(true);
 		rightTalon.changeControlMode(CANTalon.TalonControlMode.Position);
 		rightTalon.setPIDSourceType(PIDSourceType.kDisplacement);
-		rightTalon.setPID(0.1, 0, 0); // TODO: Tune PID
+		rightTalon.setPID(2, 0, 0); // TODO: Tune PID
 		rightTalon.setSetpoint(distance / RobotMap.WHEEL_CIRCUMFERENCE);
 	}
 
@@ -62,6 +62,6 @@ public class MoveForward extends Command {
 
 	@Override
 	protected boolean isFinished() {
-		return Math.abs(robot.getDrive().getRightTalon().getError()) < 5D;
+		return Math.abs(robot.getDrive().getRightTalon().getError()) < 50D;
 	}
 }
