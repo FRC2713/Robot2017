@@ -78,9 +78,12 @@ public class Robot extends IterativeRobot {
 		RobotMap.autonomousActivation.addObject("Do nothing", false);
 		SmartDashboard.putData("Autonomous Activation", RobotMap.autonomousActivation);
 
-		RobotMap.startingPosition.addDefault("Position 1 (left)", 1);
-		RobotMap.startingPosition.addObject("Position 3 (right)", 3); // Out of order in order
-		RobotMap.startingPosition.addObject("Position 2 (middle)", 2); // to keep order on dashboard.
+		RobotMap.startingPosition.addDefault("Red Position 1 (left)", 1);
+		RobotMap.startingPosition.addObject("Red Position 2 (middle)", 2);
+		RobotMap.startingPosition.addObject("Red Position 3 (right)", 3);
+		RobotMap.startingPosition.addObject("Blue Position 1 (left)", 4);
+		RobotMap.startingPosition.addObject("Blue Position 2 (middle)", 5);
+		RobotMap.startingPosition.addObject("Blue Position 3 (right)", 6);
 		SmartDashboard.putData("Starting Position", RobotMap.startingPosition);
 
 		SmartDashboard.putNumber("Launcher Speed", 0.67D);

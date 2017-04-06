@@ -10,6 +10,7 @@ import org.usfirst.frc.team2713.subsystems.DriveSubsystem;
 public class VisionAlign extends Command {
 	private NetworkTable table;
 	private boolean withinThreshold;
+	private long startTime;
 
 	private PIDController pid;
 
@@ -22,6 +23,7 @@ public class VisionAlign extends Command {
 	protected void initialize() {
 		pid = Robot.getRobot().getDrive().createGyroPidController(RobotMap.VISION_ANGLE_TOLERANCE);
 		withinThreshold = false;
+		startTime = System.currentTimeMillis();
 	}
 
 	@Override
@@ -63,6 +65,6 @@ public class VisionAlign extends Command {
 
 	@Override
 	protected boolean isFinished() {
-		return withinThreshold;
+		return pid.onTarget() || System.currentTimeMillis() - startTime >= 3000;
 	}
 }

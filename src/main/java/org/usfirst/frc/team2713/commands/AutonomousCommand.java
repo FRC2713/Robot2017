@@ -6,16 +6,22 @@ import org.usfirst.frc.team2713.Robot;
 public class AutonomousCommand extends CommandGroup {
 	public AutonomousCommand(int startingPosition, boolean active) {
 		if (active) {
-			addSequential(new MoveForward(103D));
-
 			switch (startingPosition) {
 				case 1:
-					addSequential(new Turn(60D, 2D));
+				case 6:
+					addSequential(new MoveForward(95D));
+					addSequential(new Turn(startingPosition == 1 ? 60D : -60D, 5D));
 					addSequential(new VisionAlign(Robot.getRobot().getDrive()));
 					addSequential(new VisionMoveForward());
 					break;
+				case 2:
+				case 5:
+					addSequential(new MoveForward(103D));
+					break;
 				case 3:
-					addSequential(new Turn(-60D, 2D));
+				case 4:
+					addSequential(new MoveForward(95D));
+					addSequential(new Turn(startingPosition == 3 ? -60D : 60D, 5D));
 					addSequential(new VisionAlign(Robot.getRobot().getDrive()));
 					addSequential(new VisionMoveForward());
 					break;
