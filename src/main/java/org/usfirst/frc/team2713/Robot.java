@@ -68,10 +68,10 @@ public class Robot extends IterativeRobot {
 	}
 
 	private void initDash() {
-		RobotMap.OIDriveMode.addDefault("Therian Drive", DriveSubsystem.DriveModes.therian);
-		RobotMap.OIDriveMode.addObject("Tank Drive", DriveSubsystem.DriveModes.tank);
-		RobotMap.OIDriveMode.addObject("Arcade Drive", DriveSubsystem.DriveModes.arcade);
-		RobotMap.OIDriveMode.addObject("Rocket League", DriveSubsystem.DriveModes.rocketleague);
+		RobotMap.OIDriveMode.addDefault("Bradford Drive", DriveSubsystem.DriveModes.BRADFORD);
+		RobotMap.OIDriveMode.addObject("Tank Drive", DriveSubsystem.DriveModes.TANK);
+		RobotMap.OIDriveMode.addObject("Arcade Drive", DriveSubsystem.DriveModes.ARCADE);
+		RobotMap.OIDriveMode.addObject("Rocket League", DriveSubsystem.DriveModes.ROCKETLEAGUE);
 		SmartDashboard.putData("OI Mode", RobotMap.OIDriveMode);
 
 		RobotMap.autonomousActivation.addDefault("Do something", true);
