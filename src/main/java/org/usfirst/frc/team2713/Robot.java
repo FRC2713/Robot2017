@@ -84,6 +84,8 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putData("Starting Position", RobotMap.startingPosition);
 
 		SmartDashboard.putNumber("Launcher Speed", 0.67D);
+		
+		SmartDashboard.putNumber("Speed", )
 	}
 
 	private void initCamera() {

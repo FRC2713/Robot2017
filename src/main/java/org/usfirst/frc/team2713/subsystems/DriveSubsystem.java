@@ -8,7 +8,6 @@ import org.usfirst.frc.team2713.OI;
 import org.usfirst.frc.team2713.Robot;
 import org.usfirst.frc.team2713.RobotMap;
 import org.usfirst.frc.team2713.commands.OIDrive;
-import org.usfirst.frc.team2713.commands.Turn;
 import org.usfirst.frc.team2713.commands.VisionAlign;
 
 public class DriveSubsystem extends Subsystem {
@@ -122,6 +121,25 @@ public class DriveSubsystem extends Subsystem {
 
 	public CANTalon getBottomRightTalon() {
 		return bottomRight;
+	}
+	
+	public double getInchesPerSecond(CANTalon talon){
+		// TODO What is EncVelocity measured in?
+		// Gearbox: https://tinyurl.com/yb6l4o6n
+		
+		final int CYCLES_PER_REVOLUTION = 360;
+		final int PULSES_PER_REVOLUTION = 1440;
+		
+		double origVelocity = talon.getEncVelocity();
+		double origMillisecond = System.currentTimeMillis();
+		
+		//TODO SLEEP 10ms
+		
+		double newVelocity = talon.getEncVelocity();
+		double newMillisecond = System.currentTimeMillis();
+		
+		double accel = (newVelocity - origVelocity) / (newMillisecond - origMillisecond);
+		return accel / PULSES_PER_REVOLUTION * RobotMap.WHEEL_CIRCUMFERENCE;
 	}
 
 	public ADXRS450_Gyro getGyro() {
