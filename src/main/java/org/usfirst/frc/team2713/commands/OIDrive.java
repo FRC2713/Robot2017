@@ -22,20 +22,20 @@ public class OIDrive extends Command {
 	@Override
 	protected void execute() {
 		switch ((DriveSubsystem.DriveModes) RobotMap.OIDriveMode.getSelected()) {
-			case tank:
+			case TANK:
 				drive.tankDrive(xbox.getY(Hand.kLeft) * scaler * polarity, xbox.getY(Hand.kRight) * scaler * polarity, deadband, true);
 				break;
-			case therian:
+			case BRADFORD:
 				double speed = drive.getDeadband(xbox.getY(Hand.kLeft));
 				double rotation = drive.getDeadband(xbox.getX(Hand.kRight));
 				drive.arcadeDrive(speed * scaler * polarity, rotation * scaler * polarity, deadband, true);
 				break;
-			case arcade:
+			case ARCADE:
 				speed = drive.getDeadband(xbox.getY(Hand.kLeft));
 				rotation = drive.getDeadband(xbox.getX(Hand.kLeft));
 				drive.arcadeDrive(speed * scaler * polarity, rotation * scaler * polarity, deadband, true);
 				break;
-			case rocketleague:
+			case ROCKETLEAGUE:
 				if (xbox.getTriggerAxis(Hand.kRight) != 0 && xbox.getTriggerAxis(Hand.kLeft) == 0) {
 					speed = -drive.getDeadband(xbox.getTriggerAxis(Hand.kRight));
 				} else if (xbox.getTriggerAxis(Hand.kLeft) != 0 && xbox.getTriggerAxis(Hand.kRight) == 0) {

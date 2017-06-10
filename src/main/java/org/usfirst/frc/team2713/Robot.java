@@ -68,19 +68,22 @@ public class Robot extends IterativeRobot {
 	}
 
 	private void initDash() {
-		RobotMap.OIDriveMode.addDefault("Therian Drive", DriveSubsystem.DriveModes.therian);
-		RobotMap.OIDriveMode.addObject("Tank Drive", DriveSubsystem.DriveModes.tank);
-		RobotMap.OIDriveMode.addObject("Arcade Drive", DriveSubsystem.DriveModes.arcade);
-		RobotMap.OIDriveMode.addObject("Rocket League", DriveSubsystem.DriveModes.rocketleague);
+		RobotMap.OIDriveMode.addDefault("Bradford Drive", DriveSubsystem.DriveModes.BRADFORD);
+		RobotMap.OIDriveMode.addObject("Tank Drive", DriveSubsystem.DriveModes.TANK);
+		RobotMap.OIDriveMode.addObject("Arcade Drive", DriveSubsystem.DriveModes.ARCADE);
+		RobotMap.OIDriveMode.addObject("Rocket League", DriveSubsystem.DriveModes.ROCKETLEAGUE);
 		SmartDashboard.putData("OI Mode", RobotMap.OIDriveMode);
 
 		RobotMap.autonomousActivation.addDefault("Do something", true);
 		RobotMap.autonomousActivation.addObject("Do nothing", false);
 		SmartDashboard.putData("Autonomous Activation", RobotMap.autonomousActivation);
 
-		RobotMap.startingPosition.addDefault("Position 1 (left)", 1);
-		RobotMap.startingPosition.addObject("Position 3 (right)", 3); // Out of order in order
-		RobotMap.startingPosition.addObject("Position 2 (middle)", 2); // to keep order on dashboard.
+		RobotMap.startingPosition.addDefault("Red Position 1 (left)", 1);
+		RobotMap.startingPosition.addObject("Red Position 2 (middle)", 2);
+		RobotMap.startingPosition.addObject("Red Position 3 (right)", 3);
+		RobotMap.startingPosition.addObject("Blue Position 1 (left)", 4);
+		RobotMap.startingPosition.addObject("Blue Position 2 (middle)", 5);
+		RobotMap.startingPosition.addObject("Blue Position 3 (right)", 6);
 		SmartDashboard.putData("Starting Position", RobotMap.startingPosition);
 
 		SmartDashboard.putNumber("Launcher Speed", 0.67D);

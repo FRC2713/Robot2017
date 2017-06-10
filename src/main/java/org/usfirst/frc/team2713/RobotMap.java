@@ -13,7 +13,7 @@ public class RobotMap {
 	public static final double WHEEL_CIRCUMFERENCE = 18.8496D;
 
 	// Tunings
-	public static final double VISION_ANGLE_TOLERANCE = 0.5D;
+	public static final double VISION_ANGLE_TOLERANCE = 5D;
 
 	// Controller Ports
 	public static final int BACKUP_XBOX_PORT = 0;
