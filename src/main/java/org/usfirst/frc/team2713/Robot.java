@@ -29,7 +29,7 @@ public class Robot extends IterativeRobot {
 		oi = new OI();
 
 		initSubsystems();
-		initCamera();
+		//initCamera();
 		initDash();
 	}
 
@@ -88,7 +88,7 @@ public class Robot extends IterativeRobot {
 
 		SmartDashboard.putNumber("Launcher Speed", 0.67D);
 		
-		SmartDashboard.putNumber("Speed", )
+		//SmartDashboard.putNumber("Speed", )
 	}
 
 	private void initCamera() {

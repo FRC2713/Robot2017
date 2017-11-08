@@ -1,8 +1,8 @@
 package org.usfirst.frc.team2713.subsystems;
 
-import com.ctre.CANTalon;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import org.usfirst.frc.team2713.CANTalon;
 import org.usfirst.frc.team2713.OI;
 import org.usfirst.frc.team2713.Robot;
 import org.usfirst.frc.team2713.RobotMap;

@@ -1,7 +1,7 @@
 package org.usfirst.frc.team2713.commands;
 
-import com.ctre.CANTalon;
 import edu.wpi.first.wpilibj.command.Command;
+import org.usfirst.frc.team2713.CANTalon;
 import org.usfirst.frc.team2713.subsystems.ClimbSubsystem;
 
 public class ClimbCommand extends Command {

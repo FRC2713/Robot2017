@@ -1,8 +1,8 @@
 package org.usfirst.frc.team2713.commands;
 
-import com.ctre.CANTalon;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import org.usfirst.frc.team2713.CANTalon;
 
 public class MoveMotor extends Command {
 	private CANTalon motor;

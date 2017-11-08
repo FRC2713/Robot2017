@@ -2,18 +2,30 @@ plugins {
 	id "java"
 	id "eclipse"
 	id "idea"
-	id "jaci.openrio.gradle.GradleRIO" version "2017.1.1"
+	id "jaci.openrio.gradle.GradleRIO" version "2018-beta-2c"
 }
 
-frc {
-	robotClass = 'org.usfirst.frc.team2713.Robot'
-	team = '2713'
-	rioIP = '10.27.13.103'
+def TEAM = 2713
+def ROBOT_CLASS = "org.usfirst.frc.team2713.Robot"
+
+idea {
+	module {
+		downloadJavadoc = true
+		downloadSources = true
+	}
 }
 
-def robotManifest = {
-	attributes 'Main-Class': 'edu.wpi.first.wpilibj.RobotBase'
-	attributes 'Robot-Class': frc.robotClass
+deploy {
+	targets {
+		target("roborio", jaci.openrio.gradle.frc.RoboRIO) {
+			team = TEAM
+		}
+	}
+	artifacts {
+		artifact('frcJava', jaci.openrio.gradle.frc.FRCJavaArtifact) {
+			targets << "roborio"
+		}
+	}
 }
 
 repositories {
@@ -22,15 +34,23 @@ repositories {
 
 dependencies {
 	compile wpilib()
-	compile talonSrx()
+	//compile ctre()
+	//compile navx()
+
+	//compile zipTree('libs/phoenix/CTREPhoenix.zip').matching { it.include('java/lib/CTRE_Phoenix.jar') }
+	//nativeLib zipTree('libs/phoenix/CTREPhoenix.zip').matching { it.include('java/lib/libCTRE_PhoenixCCI.so') }
+
+	compile fileTree(dir: 'libs/phoenix', include: '*.jar')
+	nativeLib fileTree(dir: 'libs/phoenix', include: '*.so')
+
 	testCompile 'junit:junit:4.12'
 }
 
 jar {
 	from configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
-	manifest robotManifest
+	manifest jaci.openrio.gradle.GradleRIOPlugin.javaManifest(ROBOT_CLASS)
 }
 
 task wrapper(type: Wrapper) {
-	gradleVersion = '3.3'
+	gradleVersion = '4.2.1'
 }
