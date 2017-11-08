@@ -20,7 +20,7 @@ local.properties
 
 *.class
 
-
+*.jar
 *.war
 *.ear
 
